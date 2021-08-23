@@ -1,0 +1,50 @@
+{
+  "de": {
+    "libraries": [
+      {
+        "name": "Voebb Overdrive",
+        "url": "https://voebb.overdrive.com/search?query={{ISBN}}"
+      }
+    ],
+    "book_stores": [
+      {
+        "name": "Genialokal",
+        "url": "https://www.genialokal.de/Suche/?q%5B%5D={{ISBN}}"
+      },
+      {
+        "name": "Thalia",
+        "url": "https://www.thalia.de/suche?filterPATHROOT=&sq={{ISBN}}"
+      },
+      {
+        "name": "Buchbox Berlin",
+        "url": "https://buchboxberlin.de/shop/search?titel={{ISBN}}"
+      },
+      {
+        "name": "Buchkatalog.de",
+        "url": "http://shop.buchkatalog.de/webapp/wcs/stores/servlet/SearchCmd?storeId=167206&langId=-3&searchTerm={{ISBN}}"
+      },
+      {
+        "name": "Amazon.de",
+        "url": "https://www.amazon.de/s?k={{ISBN}}&i=stripbooks"
+      }
+    ],
+    "used_book_store": [
+      {
+        "name": "booklooker",
+        "url": "https://www.booklooker.de/app/result.php?mediaType=0&isbn={{ISBN}}"
+      }
+    ]
+  },
+  "everywhere": {
+    "trackers": [
+      {
+        "name": "The StoryGraph",
+        "url": "https://app.thestorygraph.com/browse?search_term={{ISBN}}"
+      },
+      {
+        "name": "Goodreads",
+        "url": "https://www.goodreads.com/search?q={{ISBN}}"
+      }
+    ]
+  }
+}
