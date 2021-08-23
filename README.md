@@ -7,4 +7,4 @@
 This is bookpile in a nutshell. 
 
 Currently I am collecting a list of all online stores and library websites in the 
-file [websites.json](websites.json). Feel free to add a PR to add more.
+file [websites.json](websites.json). Feel free to create a PR to add more.
