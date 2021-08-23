@@ -51,6 +51,14 @@
       }
     ]
   },
+  "es": {
+    "book_stores": [
+      {
+        "name": "todostuslibros.com",
+        "url": "https://www.todostuslibros.com/busquedas?keyword={{ISBN}}"
+      }
+    ]
+  },
   "everywhere": {
     "trackers": [
       {
