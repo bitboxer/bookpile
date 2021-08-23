@@ -4,6 +4,10 @@
       {
         "name": "Voebb Overdrive",
         "url": "https://voebb.overdrive.com/search?query={{ISBN}}"
+      },
+      {
+        "name": "Stadtbibliothek Köln",
+        "url": "https://katalog.stbib-koeln.de/alswww2.dll/Obj_423921629734321?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=QueryWithLimits&SearchType=QuickSearch&DB=SearchServer&TargetSearchType=QuickSearch&q.PageSize=10&q.Query={{ISBN}}"
       }
     ],
     "book_stores": [
