@@ -8,14 +8,6 @@
       {
         "name": "Stadtbibliothek Köln",
         "url": "https://katalog.stbib-koeln.de/alswww2.dll/Obj_423921629734321?Style=Portal3&SubStyle=&Lang=GER&ResponseEncoding=utf-8&Method=QueryWithLimits&SearchType=QuickSearch&DB=SearchServer&TargetSearchType=QuickSearch&q.PageSize=10&q.Query={{ISBN}}"
-      },
-      {
-        "name": "WorldCat",
-        "url": "https://worldcat.org/isbn/{{ISBN}}"
-      },
-      {
-        "name": "The Library.Link Network",
-        "url": "https://labs.library.link/services/borrow/?isbn={{ISBN}}&embed=True&radius=500"
       }
     ],
     "book_stores": [
@@ -60,6 +52,16 @@
     ]
   },
   "everywhere": {
+    "libraries": [
+      {
+        "name": "WorldCat",
+        "url": "https://worldcat.org/isbn/{{ISBN}}"
+      },
+      {
+        "name": "The Library.Link Network",
+        "url": "https://labs.library.link/services/borrow/?isbn={{ISBN}}&embed=True&radius=500"
+      }
+    ],  
     "trackers": [
       {
         "name": "The StoryGraph",
