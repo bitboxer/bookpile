@@ -26,6 +26,10 @@
       {
         "name": "Amazon.de",
         "url": "https://www.amazon.de/s?k={{ISBN}}&i=stripbooks"
+      },
+      {
+        "name": "Links Lesen",
+        "url": "https://links-lesen.buchkatalog.de/servlet/SearchDisplay?storeId=55741&catalogId=10002&langId=-3&pageSize=10&beginIndex=0&sType=SimpleSearch&resultCatEntryType=2&showResultsPage=true&pageView=&pageType=PK&searchTerm={{ISBN}}&searchBtn=&mediaTypes=Book:B%C3%BCcher"
       }
     ],
     "used_book_store": [
