@@ -2,7 +2,7 @@
 
 > I have: An ISBN
 >
-> I want: a page that I can link to like “bookpile.org/ISBN” that renders a page where I can select a country and see possible online retailers with links to their store.
+> I want: a page that I can link to like “bookpile.org/ISBN” that renders a page where I can select a country and see possible libraries or online retailers with links to their store.
 
 This is bookpile in a nutshell. 
 
