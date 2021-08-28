@@ -1,0 +1,95 @@
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        elixir: [1.12.2]
+        otp: [23.3]
+
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.6.0
+        with:
+          access_token: ${{ github.token }}
+
+      - uses: actions/checkout@v2
+
+      - name: Install rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+
+      - uses: huaxk/postgis-action@v1
+        with:
+          postgresql version: '11'
+          postgresql password: 'postgres'
+          postgresql user: 'postgres'
+          postgresql db: 'bookpile_test'
+
+      - name: Install pdf packages
+        run: sudo apt-get install poppler-utils qpdf -y
+
+      - name: Install pdfminer.six
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x' 
+      - name: Install pdfminer
+        uses: BSFishy/pip-action@v1
+        with:
+          packages: |
+            pdfminer.six
+
+      - name: Setup elixir
+        id: setup-beam
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: ${{ matrix.elixir }} # Define the elixir version [required]
+          otp-version: ${{ matrix.otp }} # Define the OTP version [required]
+          experimental-otp: true
+           
+      - name: Retrieve Mix Dependencies Cache
+        uses: actions/cache@v1
+        id: mix-cache # id to use in retrieve action
+        with:
+            path: deps
+            key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+            restore-keys: |
+              ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+              ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-mix-
+
+      - name: Install Mix Dependencies
+        if: steps.mix-cache.outputs.cache-hit != 'true'
+        run: |
+          mix local.rebar --force
+          mix local.hex --force
+          mix deps.get
+
+      # - name: Install yarn Dependencies
+      #   run: |
+      #     cd assets
+      #     yarn install
+
+      - name: Retrieve PLT Cache
+        uses: actions/cache@v1
+        id: plt-cache
+        with:
+          path: priv/plts
+          key: ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-plts-v1-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-plts-v1-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+            ${{ runner.os }}-${{ matrix.otp }}-${{ matrix.elixir }}-plts-v1-
+
+      - name: Create PLTs
+        if: steps.plt-cache.outputs.cache-hit != 'true'
+        run: |
+          mix dialyzer --plt
+
+      - name: Run checks
+        run: mix check
+
+        #- name: Build javascript assets
+        #run: cd assets && yarn deploy
