@@ -1,5 +1,8 @@
 # Bookpile
 
+[![Build Status](https://github.com/bitboxer/bookpile/actions/workflows/elixir.yml/badge.svg?branch=main)](https://github.com/bitboxer/bookpile/actions/workflows/elixir.yml)
+
+
 > I have: An ISBN
 >
 > I want: a page that I can link to like “bookpile.org/ISBN” that renders a
