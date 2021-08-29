@@ -1,0 +1,68 @@
+{
+  "kind": "books#volumes",
+  "totalItems": 1,
+  "items": [
+    {
+      "kind": "books#volume",
+      "id": "aZyfzQEACAAJ",
+      "etag": "r5wpUCJZO7U",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/aZyfzQEACAAJ",
+      "volumeInfo": {
+        "title": "The Cousins",
+        "subtitle": "Von der Spiegel Bestseller-Autorin von \"One of us is lying\"",
+        "authors": [
+          "Karen M. McManus"
+        ],
+        "publishedDate": "2020-12-14",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "3570165787"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9783570165782"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 420,
+        "printType": "BOOK",
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "language": "en",
+        "previewLink": "http://books.google.de/books?id=aZyfzQEACAAJ&dq=isbn:9783570165782&hl=&cd=1&source=gbs_api",
+        "infoLink": "http://books.google.de/books?id=aZyfzQEACAAJ&dq=isbn:9783570165782&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/The_Cousins.html?hl=&id=aZyfzQEACAAJ"
+      },
+      "saleInfo": {
+        "country": "DE",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "DE",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=aZyfzQEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "kind": "books#volumes",
+  "totalItems": 1,
+  "items": [
+    {
+      "kind": "books#volume",
+      "id": "c8iBtAEACAAJ",
+      "etag": "0SkE9St++3I",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/c8iBtAEACAAJ",
+      "volumeInfo": {
+        "title": "The Churn: an Expanse Novella (the Expanse)",
+        "authors": [
+          "James S. A. Corey"
+        ],
+        "publishedDate": "2017-07-02",
+        "description": "Set in the hard-scrabble solar system of The Expanse, this novella takes the bestselling scifi series to the slums of Baltimore and into a dark world of organized crime, drugs, prostitution, and murder.Before his trip to the stars, before the Rocinante Timmy was confined to a Baltimore where crime paid you or killed you. Unless the authorities got to you first.On a future Earth beset by overpopulation, pollution, and poverty, people do what they must to survive. The Churn follows a crime boss named Burton as his organization is threatened by a new private security force tasked with cleaning up the city. When the police start cracking down, Burton and his footsoldiers-loyal lieutenant Erich, former prostitute Lydia, and young enforcer Timmy-become increasingly desperate to find a way out.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "1548520500"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9781548520502"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 58,
+        "printType": "BOOK",
+        "averageRating": 4,
+        "ratingsCount": 4,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "language": "en",
+        "previewLink": "http://books.google.de/books?id=c8iBtAEACAAJ&dq=isbn:1548520500&hl=&cd=1&source=gbs_api",
+        "infoLink": "http://books.google.de/books?id=c8iBtAEACAAJ&dq=isbn:1548520500&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/The_Churn_an_Expanse_Novella_the_Expanse.html?hl=&id=c8iBtAEACAAJ"
+      },
+      "saleInfo": {
+        "country": "DE",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "DE",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=c8iBtAEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Set in the hard-scrabble solar system of The Expanse, this novella takes the bestselling scifi series to the slums of Baltimore and into a dark world of organized crime, drugs, prostitution, and murder.Before his trip to the stars, before ..."
+      }
+    }
+  ]
+}

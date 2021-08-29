@@ -6,10 +6,13 @@ defmodule Bookpile.Repo.Migrations.CreateBooks do
       add :title, :string
       add :subtitle, :string
       add :authors, {:array, :string}
-      add :description, :string
+      add :description, :text
       add :isbn10, :string
       add :isbn13, :string
       add :image, :string
+      add :media_type, :string
+      add :page_count, :integer
+      add :published_date, :string
 
       timestamps()
     end
