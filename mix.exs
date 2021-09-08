@@ -59,7 +59,8 @@ defmodule Bookpile.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:ex_check, ">= 0.0.0", only: :dev, runtime: false},
-      {:httpoison, "~> 1.8"}
+      {:httpoison, "~> 1.8"},
+      {:mix_test_watch, "~> 1.1", only: :dev, runtime: false},
     ]
   end
 
