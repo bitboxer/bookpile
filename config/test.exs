@@ -19,6 +19,8 @@ config :bookpile, BookpileWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   server: false
 
+config :bookpile, :google_api_key, "GOOGLE_API_KEY"
+
 # In test we don't send emails.
 config :bookpile, Bookpile.Mailer, adapter: Swoosh.Adapters.Test
 

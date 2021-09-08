@@ -7,6 +7,7 @@ defmodule Bookpile.Books do
   alias Bookpile.Repo
 
   alias Bookpile.Books.Book
+  alias Bookpile.Books.GoogleBookApi
 
   @doc """
   Returns the list of books.
@@ -19,6 +20,28 @@ defmodule Bookpile.Books do
   """
   def list_books do
     Repo.all(Book)
+  end
+
+  @doc """
+  Gets a single book by its ISBN.
+
+  If the book does not exist, it will try to fetch it from google and
+  store it in the database.
+
+  Returns nil if the book does not exist.
+  """
+  def get_book_by_isbn(isbn, http_library \\ HTTPoison) do
+    query =
+      from b in Book,
+        where: b.isbn10 == ^isbn or b.isbn13 == ^isbn
+
+    result = Repo.one(query)
+
+    if result == nil do
+      fetch_book_from_google(isbn, http_library)
+    else
+      result
+    end
   end
 
   @doc """
@@ -100,5 +123,20 @@ defmodule Bookpile.Books do
   """
   def change_book(%Book{} = book, attrs \\ %{}) do
     Book.changeset(book, attrs)
+  end
+
+  @doc """
+  Fetches a book from google and returns it as a struct if found,
+  nil otherwise.
+  """
+  def fetch_book_from_google(isbn, http_library \\ HTTPoison) do
+    case GoogleBookApi.find_by_isbn(isbn, http_library) do
+      {:ok, book} ->
+        {:ok, final_book} = create_book(book)
+        final_book
+
+      {:error, _} ->
+        nil
+    end
   end
 end

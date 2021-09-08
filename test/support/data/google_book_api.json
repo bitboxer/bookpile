@@ -1,0 +1,78 @@
+{
+  "kind": "books#volumes",
+  "totalItems": 1,
+  "items": [
+    {
+      "kind": "books#volume",
+      "id": "wGRNzQEACAAJ",
+      "etag": "0lNJteJ/Gjg",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/wGRNzQEACAAJ",
+      "volumeInfo": {
+        "title": "The 99% Invisible City",
+        "subtitle": "A Field Guide to the Wonders of the Modern Metropolis",
+        "authors": [
+          "Roman Mars",
+          "Kurt Kohlstedt",
+          "99% Invisible"
+        ],
+        "publishedDate": "2020-10-06",
+        "description": "99% Invisible' is a big-ideas podcast about small-seeming things, revealing stories baked into the buildings we inhabit, the streets we drive, and the sidewalks we traverse. The show celebrates design and architecture in all of its functional glory and accidental absurdity, with intriguing tales of both designers and the people impacted by their designs.00Now, in 'The 99% Invisible City: A Field Guide to Hidden World of Everyday Design', host Roman Mars and coauthor Kurt Kohlstedt zoom in on the various elements that make our cities work, exploring the origins and other fascinating stories behind everything from power grids and fire escapes to drinking fountains and street signs. With deeply researched entries and beautiful line drawings throughout, The 99% Invisible City will captivate devoted fans of the show and anyone curious about design, urban environments, and the unsung marvels of the world around them.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "1529355273"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9781529355277"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 288,
+        "printType": "BOOK",
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=wGRNzQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=wGRNzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.de/books?id=wGRNzQEACAAJ&dq=isbn:1529355273&hl=&cd=1&source=gbs_api",
+        "infoLink": "http://books.google.de/books?id=wGRNzQEACAAJ&dq=isbn:1529355273&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/The_99_Invisible_City.html?hl=&id=wGRNzQEACAAJ"
+      },
+      "saleInfo": {
+        "country": "DE",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "DE",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=wGRNzQEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Now, in &#39;The 99% Invisible City: A Field Guide to Hidden World of Everyday Design&#39;, host Roman Mars and coauthor Kurt Kohlstedt zoom in on the various elements that make our cities work, exploring the origins and other fascinating stories ..."
+      }
+    }
+  ]
+}

@@ -58,7 +58,8 @@ defmodule Bookpile.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:ex_check, ">= 0.0.0", only: :dev, runtime: false}
+      {:ex_check, ">= 0.0.0", only: :dev, runtime: false},
+      {:httpoison, "~> 1.8"}
     ]
   end
 

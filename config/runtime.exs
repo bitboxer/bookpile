@@ -20,6 +20,8 @@ if config_env() == :prod do
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
+  config :bookpile, :google_api_key, System.get_env("BOOKPILE_GOOGLE_API_KEY") || "GOOGLE_API_KEY"
+
   secret_key_base =
     System.get_env("SECRET_KEY_BASE") ||
       raise """
