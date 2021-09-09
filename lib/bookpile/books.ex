@@ -8,6 +8,7 @@ defmodule Bookpile.Books do
 
   alias Bookpile.Books.Book
   alias Bookpile.Books.GoogleBookApi
+  alias Bookpile.Books.Search
 
   @doc """
   Returns the list of books.
@@ -138,5 +139,10 @@ defmodule Bookpile.Books do
       {:error, _} ->
         nil
     end
+  end
+
+  def search_changeset(attrs) do
+    %Search{}
+    |> Search.changeset(attrs)
   end
 end

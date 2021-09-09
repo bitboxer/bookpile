@@ -17,7 +17,10 @@ defmodule BookpileWeb.Router do
   scope "/", BookpileWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", WelcomeController, :index
+    post "/", WelcomeController, :search
+
+    get "/books/:isbn", BookController, :show
   end
 
   # Other scopes may use custom stacks.

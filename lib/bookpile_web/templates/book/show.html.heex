@@ -1,0 +1,30 @@
+<div>
+<img src={@book.image} alt={"Cover for #{@book.title}"}/>
+</div>
+<div>
+<%= @book.title %>
+</div>
+<div>
+<%= @book.subtitle %>
+</div>
+<div>
+<%= Enum.join(@book.authors, ", ") %>
+</div>
+<div>
+<%= @book.description %>
+</div>
+<div>
+<%= @book.isbn10 %>
+</div>
+<div>
+<%= @book.isbn13 %>
+</div>
+<div>
+<%= @book.media_type %>
+</div>
+<div>
+<%= @book.page_count %>
+</div>
+<div>
+<%= @book.published_date %>
+</div>
