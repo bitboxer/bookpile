@@ -11,12 +11,12 @@ defmodule BookpileWeb.WelcomeController do
 
   def search(conn, %{"search" => search_params}) do
     search = Books.search_changeset(search_params)
-    if (search.valid?) do
+
+    if search.valid? do
       redirect(conn, to: "/books/#{search_params["isbn"]}")
     else
       changeset = Books.search_changeset(%{isbn: "isbn"})
       render(conn, "index.html", changeset: changeset)
     end
   end
-
 end

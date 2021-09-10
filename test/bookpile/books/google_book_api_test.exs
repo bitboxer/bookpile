@@ -3,8 +3,8 @@ defmodule Bookpile.Books.GoogleBookApiTest do
 
   alias Bookpile.Books.GoogleBookApi
 
-  describe "import_and_serialize/1" do
-    test "can import amazon store page for a generic article" do
+  describe "find_by_isbn/2" do
+    test "finds a book" do
       assert GoogleBookApi.find_by_isbn("1529355273", Bookpile.HttpMock) ==
                {:ok,
                 %{

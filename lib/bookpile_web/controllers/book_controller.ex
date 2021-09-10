@@ -6,6 +6,7 @@ defmodule BookpileWeb.BookController do
 
   def show(conn, %{"isbn" => isbn}) do
     book = Books.get_book_by_isbn(isbn)
+
     if book do
       render(conn, "show.html", book: book)
     else
