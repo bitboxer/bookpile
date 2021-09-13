@@ -38,6 +38,18 @@
       {
         "name": "Osiander",
         "url": "https://www.osiander.de/suche?filterPATHROOT=&sq={{ISBN}}"
+      },
+      {
+        "name": "bücher.de",
+        "url": "https://www.buecher.de/isbn/{{ISBN}}"
+      },
+      {
+        "name": "Weltbild",
+        "url": "https://www.weltbild.de/suche/{{ISBN}}"
+      },
+      {
+        "name": "eBook.de",
+        "url": "https://www.ebook.de/de/quickSearch?searchString={{ISBN}}"
       }
     ],
     "used_bookstore": [
