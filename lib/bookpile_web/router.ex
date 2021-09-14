@@ -21,6 +21,7 @@ defmodule BookpileWeb.Router do
     post "/", WelcomeController, :search
 
     get "/books/:isbn", BookController, :show
+    post "/books/:isbn", BookController, :show
   end
 
   # Other scopes may use custom stacks.

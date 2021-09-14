@@ -28,3 +28,44 @@
 <div>
 <%= @book.published_date %>
 </div>
+
+<.form for={@conn}>
+  <select name='country'>
+    <%= for country <- Bookpile.BookSources.list_of_countries do %>
+      <option value={country} selected={country == @country}><%= country %></option>
+    <% end %>
+  </select>
+  <button type="submit">Submit</button>
+</.form>
+
+<h2>Buy new</h2>
+
+<ul>
+<%= for  page <- Bookpile.BookSources.bookstores_for(@country, @book) do %>
+  <li><a href={page.url} target="_blank" rel="noopener"><%= page.name %></a></li>
+<% end %>
+</ul>
+
+<h2>Buy used</h2>
+
+<ul>
+<%= for  page <- Bookpile.BookSources.used_bookstores_for(@country, @book) do %>
+  <li><a href={page.url} target="_blank" rel="noopener"><%= page.name %></a></li>
+<% end %>
+</ul>
+
+<h2>Libraries</h2>
+
+<ul>
+<%= for  page <- Bookpile.BookSources.libraries_for(@country, @book) do %>
+  <li><a href={page.url} target="_blank" rel="noopener"><%= page.name %></a></li>
+<% end %>
+</ul>
+
+<h2>Book tracking/social networks</h2>
+
+<ul>
+<%= for  page <- Bookpile.BookSources.trackers_for(@country, @book) do %>
+  <li><a href={page.url} target="_blank" rel="noopener"><%= page.name %></a></li>
+<% end %>
+</ul>

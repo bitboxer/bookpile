@@ -4,11 +4,12 @@ defmodule BookpileWeb.BookController do
   alias Bookpile.Books
   alias Bookpile.Books.Search
 
-  def show(conn, %{"isbn" => isbn}) do
+  def show(conn, %{"isbn" => isbn} = params) do
     book = Books.get_book_by_isbn(isbn)
+    country = params["country"] || "de"
 
     if book do
-      render(conn, "show.html", book: book)
+      render(conn, "show.html", book: book, country: country)
     else
       conn
       |> put_flash(:error, "Sorry, book could not find the book.")
