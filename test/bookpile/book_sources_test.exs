@@ -1,4 +1,4 @@
-defmodule Bookpile.BooksTest do
+defmodule Bookpile.BookSourcesTest do
   use Bookpile.DataCase
 
   alias Bookpile.BookSources
@@ -18,7 +18,7 @@ defmodule Bookpile.BooksTest do
       assert length(websites) > 0
       voebb = List.first(websites)
       assert voebb.name == "Voebb Overdrive"
-      assert voebb.url  == "https://voebb.overdrive.com/search?query=9783466311040"
+      assert voebb.url == "https://voebb.overdrive.com/search?query=9783466311040"
 
       assert Enum.find(websites, fn website -> website.name == "WorldCat" end) != nil
     end

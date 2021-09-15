@@ -137,7 +137,7 @@ defmodule Bookpile.Books do
 
     goodreads_book =
       if goodreads_book == nil && google_book && google_book.isbn13 && google_book.isbn13 != isbn do
-        goodreads_book = fetch_book_from_goodreads(google_book.isbn13, http_library)
+        fetch_book_from_goodreads(google_book.isbn13, http_library)
       else
         goodreads_book
       end

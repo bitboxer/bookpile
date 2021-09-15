@@ -1,4 +1,4 @@
-defmodule Bookpile.Books.GoogleBookApiTest do
+defmodule Bookpile.Books.GoodreadsTest do
   use Bookpile.DataCase
 
   alias Bookpile.Books.Goodreads

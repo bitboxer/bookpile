@@ -2,7 +2,6 @@ defmodule BookpileWeb.BookController do
   use BookpileWeb, :controller
 
   alias Bookpile.Books
-  alias Bookpile.Books.Search
 
   def show(conn, %{"isbn" => isbn} = params) do
     book = Books.get_book_by_isbn(isbn)

@@ -2,7 +2,6 @@ defmodule BookpileWeb.WelcomeController do
   use BookpileWeb, :controller
 
   alias Bookpile.Books
-  alias Bookpile.Books.Search
 
   def index(conn, _params) do
     changeset = Books.search_changeset(%{isbn: nil})
