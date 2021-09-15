@@ -52,7 +52,7 @@
         "url": "https://www.ebook.de/de/quickSearch?searchString={{ISBN}}"
       }
     ],
-    "used_bookstore": [
+    "used_bookstores": [
       {
         "name": "booklooker",
         "url": "https://www.booklooker.de/app/result.php?mediaType=0&isbn={{ISBN}}"
