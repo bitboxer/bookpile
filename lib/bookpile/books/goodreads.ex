@@ -92,6 +92,10 @@ defmodule Bookpile.Books.Goodreads do
       end)
       |> Floki.text()
 
-    free_text || free_text_container
+    if String.length(free_text) > 0 do
+      free_text
+    else
+      free_text_container
+    end
   end
 end

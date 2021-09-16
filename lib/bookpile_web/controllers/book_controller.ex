@@ -11,7 +11,7 @@ defmodule BookpileWeb.BookController do
       render(conn, "show.html", book: book, country: country)
     else
       conn
-      |> put_flash(:error, "Sorry, book could not find the book.")
+      |> put_flash(:error, gettext("Sorry, book could not find the book."))
       |> redirect(to: "/")
     end
   end

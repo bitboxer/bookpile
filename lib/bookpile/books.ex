@@ -154,8 +154,12 @@ defmodule Bookpile.Books do
           join_books(google_book, goodreads_book)
       end
 
-    {:ok, stored_book} = create_book(book)
-    stored_book
+    if book do
+      {:ok, stored_book} = create_book(book)
+      stored_book
+    else
+      nil
+    end
   end
 
   defp join_books(google_book, goodreads_book) do

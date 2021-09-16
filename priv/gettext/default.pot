@@ -44,3 +44,8 @@ msgstr ""
 #: lib/bookpile_web/templates/book/show.html.heex:57
 msgid "Libraries"
 msgstr ""
+
+#, elixir-format
+#: lib/bookpile_web/controllers/book_controller.ex:14
+msgid "Sorry, book could not find the book."
+msgstr ""
