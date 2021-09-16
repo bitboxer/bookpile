@@ -15,3 +15,38 @@ msgstr ""
 #: lib/bookpile_web/templates/page/index.html.heex:2
 msgid "Welcome to %{name}!"
 msgstr ""
+
+#, elixir-format
+#: lib/bookpile_web/templates/layout/root.html.heex:22
+msgid "Language"
+msgstr ""
+
+#, elixir-format
+#: lib/bookpile_web/templates/welcome/index.html.heex:7
+msgid "Search"
+msgstr ""
+
+#, elixir-format
+#: lib/bookpile_web/templates/book/show.html.heex:65
+msgid "Book tracking/social networks"
+msgstr ""
+
+#, elixir-format
+#: lib/bookpile_web/templates/book/show.html.heex:41
+msgid "Buy new"
+msgstr ""
+
+#, elixir-format
+#: lib/bookpile_web/templates/book/show.html.heex:49
+msgid "Buy used"
+msgstr ""
+
+#, elixir-format
+#: lib/bookpile_web/templates/book/show.html.heex:57
+msgid "Libraries"
+msgstr ""
+
+#, elixir-format
+#: lib/bookpile_web/controllers/book_controller.ex:14
+msgid "Sorry, book could not find the book."
+msgstr ""

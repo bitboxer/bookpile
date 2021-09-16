@@ -18,6 +18,8 @@ config :bookpile, BookpileWeb.Endpoint,
   pubsub_server: Bookpile.PubSub,
   live_view: [signing_salt: "fvqN4udx"]
 
+config :bookpile, :website_json_path, "./websites.json"
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

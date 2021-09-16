@@ -8,6 +8,7 @@ defmodule BookpileWeb.Router do
     plug :put_root_layout, {BookpileWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug BookpileWeb.Plug.Locale
   end
 
   pipeline :api do
@@ -17,7 +18,11 @@ defmodule BookpileWeb.Router do
   scope "/", BookpileWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", WelcomeController, :index
+    post "/", WelcomeController, :search
+
+    get "/books/:isbn", BookController, :show
+    post "/books/:isbn", BookController, :show
   end
 
   # Other scopes may use custom stacks.

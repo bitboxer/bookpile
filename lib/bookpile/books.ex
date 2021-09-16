@@ -8,6 +8,8 @@ defmodule Bookpile.Books do
 
   alias Bookpile.Books.Book
   alias Bookpile.Books.GoogleBookApi
+  alias Bookpile.Books.Goodreads
+  alias Bookpile.Books.Search
 
   @doc """
   Returns the list of books.
@@ -38,7 +40,7 @@ defmodule Bookpile.Books do
     result = Repo.one(query)
 
     if result == nil do
-      fetch_book_from_google(isbn, http_library)
+      fetch_from_web(isbn, http_library)
     else
       result
     end
@@ -126,17 +128,93 @@ defmodule Bookpile.Books do
   end
 
   @doc """
+  Fetches a book from google and goodreads and merges both
+  """
+  def fetch_from_web(isbn, http_library) do
+    google_book = fetch_book_from_google(isbn, http_library)
+
+    goodreads_book = fetch_book_from_goodreads(isbn, http_library)
+
+    goodreads_book =
+      if goodreads_book == nil && google_book && google_book.isbn13 && google_book.isbn13 != isbn do
+        fetch_book_from_goodreads(google_book.isbn13, http_library)
+      else
+        goodreads_book
+      end
+
+    book =
+      cond do
+        google_book == nil ->
+          goodreads_book
+
+        goodreads_book == nil ->
+          google_book
+
+        true ->
+          join_books(google_book, goodreads_book)
+      end
+
+    if book do
+      {:ok, stored_book} = create_book(book)
+      stored_book
+    else
+      nil
+    end
+  end
+
+  defp join_books(google_book, goodreads_book) do
+    description =
+      if String.length(google_book.description || "") >
+           String.length(goodreads_book.description || "") do
+        google_book.description
+      else
+        goodreads_book.description
+      end
+
+    %{
+      title: google_book.title || goodreads_book.subtitle,
+      subtitle: google_book.subtitle,
+      description: description,
+      authors: google_book.authors,
+      image: goodreads_book.image || google_book.image,
+      isbn10: google_book.isbn10 || goodreads_book.isbn10,
+      isbn13: google_book.isbn13 || goodreads_book.isbn13,
+      media_type: google_book.media_type,
+      page_count: google_book.page_count || goodreads_book.page_count,
+      published_date: google_book.published_date
+    }
+  end
+
+  @doc """
   Fetches a book from google and returns it as a struct if found,
   nil otherwise.
   """
   def fetch_book_from_google(isbn, http_library \\ HTTPoison) do
     case GoogleBookApi.find_by_isbn(isbn, http_library) do
       {:ok, book} ->
-        {:ok, final_book} = create_book(book)
-        final_book
+        book
 
       {:error, _} ->
         nil
     end
+  end
+
+  @doc """
+  Fetches a book from goodreads and returns it as a struct if found,
+  nil otherwise.
+  """
+  def fetch_book_from_goodreads(isbn, http_library \\ HTTPoison) do
+    case Goodreads.find_by_isbn(isbn, http_library) do
+      {:ok, book} ->
+        book
+
+      {:error, _} ->
+        nil
+    end
+  end
+
+  def search_changeset(attrs) do
+    %Search{}
+    |> Search.changeset(attrs)
   end
 end

@@ -77,4 +77,48 @@ defmodule Bookpile.HttpMock do
     {:ok, html} = File.read("./test/support/data/google_book_api_the_churn.json")
     {:ok, %{status_code: 200, body: html, headers: []}}
   end
+
+  def get(
+        "https://www.goodreads.com/search?q=3847900781",
+        [
+          Accept: "text/html"
+        ],
+        follow_redirect: true
+      ) do
+    {:ok, html} = File.read("./test/support/data/goodreads_herzschlag_ins_gesicht.html")
+    {:ok, %{status_code: 200, body: html, headers: []}}
+  end
+
+  def get(
+        "https://www.goodreads.com/search?q=9781529355277",
+        [
+          Accept: "text/html"
+        ],
+        follow_redirect: true
+      ) do
+    {:ok, html} = File.read("./test/support/data/goodreads_not_found.html")
+    {:ok, %{status_code: 200, body: html, headers: []}}
+  end
+
+  def get(
+        "https://www.goodreads.com/search?q=1529355273",
+        [
+          Accept: "text/html"
+        ],
+        follow_redirect: true
+      ) do
+    {:ok, html} = File.read("./test/support/data/goodreads_not_found.html")
+    {:ok, %{status_code: 200, body: html, headers: []}}
+  end
+
+  def get(
+        "https://www.goodreads.com/search?q=notfound",
+        [
+          Accept: "text/html"
+        ],
+        follow_redirect: true
+      ) do
+    {:ok, html} = File.read("./test/support/data/goodreads_not_found.html")
+    {:ok, %{status_code: 200, body: html, headers: []}}
+  end
 end

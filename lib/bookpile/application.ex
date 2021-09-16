@@ -14,6 +14,7 @@ defmodule Bookpile.Application do
       BookpileWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Bookpile.PubSub},
+      {Bookpile.BookSources, name: Bookpile.BookSources},
       # Start the Endpoint (http/https)
       BookpileWeb.Endpoint
       # Start a worker by calling: Bookpile.Worker.start_link(arg)
