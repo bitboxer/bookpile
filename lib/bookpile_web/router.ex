@@ -8,6 +8,7 @@ defmodule BookpileWeb.Router do
     plug :put_root_layout, {BookpileWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug BookpileWeb.Plug.Locale
   end
 
   pipeline :api do

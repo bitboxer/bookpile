@@ -1,11 +1,8 @@
-<p>
-  Hello
-</p>
 
 <%= form_for @changeset, Routes.welcome_path(@conn, :search), fn f -> %>
    <label>
      <div>ISBN</div>
      <%= text_input f, :isbn, placeholder: "Please enter a ISBN number" %>
    </label>
-   <button type="submit">Search</button>
+   <button type="submit"><%= gettext("Search") %></button>
 <% end %>

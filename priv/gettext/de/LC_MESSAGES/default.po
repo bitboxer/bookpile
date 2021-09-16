@@ -8,20 +8,20 @@
 ## to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: en\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2\n"
 
 #, elixir-format
 #: lib/bookpile_web/templates/page/index.html.heex:2
 msgid "Welcome to %{name}!"
-msgstr ""
+msgstr "Willkommen zu %{name}!"
 
 #, elixir-format
 #: lib/bookpile_web/templates/layout/root.html.heex:22
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 #, elixir-format
 #: lib/bookpile_web/templates/welcome/index.html.heex:7
 msgid "Search"
-msgstr ""
+msgstr "Suchen"
