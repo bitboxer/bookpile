@@ -25,3 +25,23 @@ msgstr "Sprache"
 #: lib/bookpile_web/templates/welcome/index.html.heex:7
 msgid "Search"
 msgstr "Suchen"
+
+#, elixir-format
+#: lib/bookpile_web/templates/book/show.html.heex:65
+msgid "Book tracking/social networks"
+msgstr "Buch-Listen/Soziale Netwerke"
+
+#, elixir-format
+#: lib/bookpile_web/templates/book/show.html.heex:41
+msgid "Buy new"
+msgstr "Neu kaufen"
+
+#, elixir-format
+#: lib/bookpile_web/templates/book/show.html.heex:49
+msgid "Buy used"
+msgstr "Gebraucht kaufen"
+
+#, elixir-format
+#: lib/bookpile_web/templates/book/show.html.heex:57
+msgid "Libraries"
+msgstr "Bibliotheken"
