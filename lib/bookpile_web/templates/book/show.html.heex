@@ -43,7 +43,10 @@
       <% end %>
       <div class="book-author">by {Enum.join(@book.authors, ", ")}</div>
       <%= if @book.description do %>
-        <p class="book-description">{@book.description}</p>
+        <div class="book-description-wrap">
+          <p class="book-description" id="book-description">{@book.description}</p>
+          <button class="show-more-btn" id="show-more-btn" type="button" style="display:none">Show more…</button>
+        </div>
       <% end %>
       <div class="book-chips">
         <%= if @book.media_type do %>

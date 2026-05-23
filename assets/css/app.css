@@ -405,14 +405,30 @@ h1, h2, h3 { font-weight: 400; }
   color: var(--ink-soft);
 }
 
+.book-description-wrap { margin-top: 26px; }
 .book-description {
   font-family: var(--serif);
   font-size: 20px;
   line-height: 1.5;
-  margin-top: 26px;
   color: var(--ink);
   text-wrap: pretty;
   max-width: 540px;
+}
+.book-description--clamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.show-more-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--ochre);
+  cursor: pointer;
+  letter-spacing: 0.02em;
 }
 
 .book-chips {
@@ -702,7 +718,8 @@ h1, h2, h3 { font-weight: 400; }
   .cover-wave { left: 16px; right: 16px; width: calc(100% - 32px); }
   .book-title { font-size: 38px; margin: 8px 0; }
   .book-author { font-size: 18px; }
-  .book-description { font-size: 17px; margin-top: 18px; }
+  .book-description-wrap { margin-top: 18px; }
+  .book-description { font-size: 17px; }
 
   .region-bar {
     margin: 0 20px;
