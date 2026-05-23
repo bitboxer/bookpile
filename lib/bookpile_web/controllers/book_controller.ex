@@ -22,6 +22,17 @@ defmodule BookpileWeb.BookController do
       {country, city} = resolve_location(conn, params)
       listings = BookSources.listings_for(country, city)
 
+      og_image =
+        (book.image || "https://covers.openlibrary.org/b/isbn/#{display_isbn}-L.jpg")
+        |> String.replace("http://", "https://")
+        |> String.replace("zoom=1", "zoom=0")
+
+      og_description =
+        case book.description do
+          nil -> "Find where to buy or borrow #{book.title} by #{Enum.join(book.authors, ", ")} near you."
+          desc -> String.slice(desc, 0, 200) |> then(&if String.length(desc) > 200, do: &1 <> "…", else: &1)
+        end
+
       render(conn, "show.html",
         book: book,
         isbn: display_isbn,
@@ -31,7 +42,14 @@ defmodule BookpileWeb.BookController do
         local_shops: listings["local_shops"] || [],
         national_shops: listings["national_shops"] || [],
         libraries: listings["libraries"] || [],
-        trackers: listings["trackers"] || []
+        trackers: listings["trackers"] || [],
+        page_title: book.title,
+        og_type: "book",
+        og_title: "#{book.title} — Bookpile",
+        og_description: og_description,
+        og_image: og_image,
+        og_url: "https://bookpile.org/b/#{display_isbn}",
+        og_isbn: display_isbn
       )
     else
       conn
