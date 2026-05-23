@@ -88,6 +88,32 @@ h1, h2, h3 { font-weight: 400; }
   background: var(--ink);
 }
 
+/* Mobile navigation popover — no JS needed, uses native Popover API */
+.mobile-nav-popover {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  background: var(--paper);
+  inset: unset;
+}
+.mobile-nav-popover:popover-open {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 12px 20px 4px;
+  gap: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  z-index: 100;
+}
+.mobile-nav-popover .nav-link { padding: 10px 0; font-size: 15px; }
+
 .landing-main {
   flex: 1;
   display: flex;

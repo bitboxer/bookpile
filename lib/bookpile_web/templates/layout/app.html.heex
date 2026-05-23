@@ -7,15 +7,20 @@
       </svg>
       <span class="logo-text">bookpile</span>
     </a>
-    <nav class="landing-nav">
+    <nav class="landing-nav" aria-label="Main navigation">
       <a href="#" class="nav-link">About</a>
       <a href="#" class="nav-link">Suggest a shop</a>
       <a href="#" class="nav-link">Manifesto</a>
     </nav>
-    <button class="hamburger" aria-label="Menu">
+    <button class="hamburger" popovertarget="mobile-nav" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </header>
+  <nav id="mobile-nav" popover="auto" class="mobile-nav-popover" aria-label="Mobile navigation">
+    <a href="#" class="nav-link">About</a>
+    <a href="#" class="nav-link">Suggest a shop</a>
+    <a href="#" class="nav-link">Manifesto</a>
+  </nav>
   <main class="landing-main">
     {@inner_content}
   </main>
