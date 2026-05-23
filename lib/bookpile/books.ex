@@ -133,7 +133,9 @@ defmodule Bookpile.Books do
   """
   def fetch_from_web(isbn, http_library) do
     case fetch_and_merge(isbn, http_library) do
-      nil -> nil
+      nil ->
+        nil
+
       book_data ->
         {:ok, stored_book} = create_book(book_data)
         stored_book

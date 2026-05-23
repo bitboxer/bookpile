@@ -21,8 +21,17 @@ defmodule Bookpile.BookSources do
         |> Enum.map(fn {city, city_data} ->
           local_shops = city_data["shops"] || []
           national_shops = country_shops ++ everywhere_shops
-          merged_libraries = (city_data["libraries"] || []) ++ country_libraries ++ everywhere_libraries
-          {city, %{"local_shops" => local_shops, "national_shops" => national_shops, "libraries" => merged_libraries, "trackers" => everywhere_trackers}}
+
+          merged_libraries =
+            (city_data["libraries"] || []) ++ country_libraries ++ everywhere_libraries
+
+          {city,
+           %{
+             "local_shops" => local_shops,
+             "national_shops" => national_shops,
+             "libraries" => merged_libraries,
+             "trackers" => everywhere_trackers
+           }}
         end)
         |> Map.new()
 

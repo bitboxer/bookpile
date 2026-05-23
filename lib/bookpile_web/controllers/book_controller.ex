@@ -29,8 +29,12 @@ defmodule BookpileWeb.BookController do
 
       og_description =
         case book.description do
-          nil -> "Find where to buy or borrow #{book.title} by #{Enum.join(book.authors, ", ")} near you."
-          desc -> String.slice(desc, 0, 200) |> then(&if String.length(desc) > 200, do: &1 <> "…", else: &1)
+          nil ->
+            "Find where to buy or borrow #{book.title} by #{Enum.join(book.authors, ", ")} near you."
+
+          desc ->
+            String.slice(desc, 0, 200)
+            |> then(&if String.length(desc) > 200, do: &1 <> "…", else: &1)
         end
 
       render(conn, "show.html",

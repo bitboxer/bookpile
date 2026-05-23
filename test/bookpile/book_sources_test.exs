@@ -9,6 +9,7 @@ defmodule Bookpile.BookSourcesTest do
       decoded = Jason.decode!(BookSources.regions_json())
 
       expected_countries = map_size(decoded)
+
       expected_cities =
         decoded
         |> Map.values()
