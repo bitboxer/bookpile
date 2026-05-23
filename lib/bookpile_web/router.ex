@@ -5,7 +5,7 @@ defmodule BookpileWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {BookpileWeb.LayoutView, :root}
+    plug :put_root_layout, html: {BookpileWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug BookpileWeb.Plug.Locale
@@ -21,8 +21,7 @@ defmodule BookpileWeb.Router do
     get "/", WelcomeController, :index
     post "/", WelcomeController, :search
 
-    get "/books/:isbn", BookController, :show
-    post "/books/:isbn", BookController, :show
+    get "/b/:isbn", BookController, :show
   end
 
   # Other scopes may use custom stacks.

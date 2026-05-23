@@ -24,7 +24,7 @@ defmodule BookpileWeb.ConnCase do
       import Phoenix.ConnTest
       import BookpileWeb.ConnCase
 
-      alias BookpileWeb.Router.Helpers, as: Routes
+      use BookpileWeb, :verified_routes
 
       # The default endpoint for testing
       @endpoint BookpileWeb.Endpoint

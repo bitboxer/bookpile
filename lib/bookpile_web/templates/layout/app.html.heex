@@ -1,5 +1,26 @@
-<main class="container">
-  <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-  <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-  <%= @inner_content %>
-</main>
+<div class="landing">
+  <header class="landing-header">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ochre)" stroke-width="1.6">
+        <path d="M3 5 L3 20 L11 18 L11 4 Z" fill="var(--ochre-soft)"/>
+        <path d="M21 5 L21 20 L13 18 L13 4 Z" fill="var(--paper)"/>
+      </svg>
+      <span class="logo-text">bookpile</span>
+    </a>
+    <nav class="landing-nav">
+      <a href="#" class="nav-link">About</a>
+      <a href="#" class="nav-link">Suggest a shop</a>
+      <a href="#" class="nav-link">Manifesto</a>
+    </nav>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+  <main class="landing-main">
+    {@inner_content}
+  </main>
+  <footer class="landing-footer">
+    <span>bookpile.org · A small open project</span>
+    <span class="footer-tagline">An ISBN is the only thing we ask for.</span>
+  </footer>
+</div>

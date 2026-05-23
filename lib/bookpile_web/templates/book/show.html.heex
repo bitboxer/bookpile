@@ -1,71 +1,110 @@
-<div>
-<img src={@book.image} alt={"Cover for #{@book.title}"}/>
-</div>
-<div>
-<%= @book.title %>
-</div>
-<div>
-<%= @book.subtitle %>
-</div>
-<div>
-<%= Enum.join(@book.authors, ", ") %>
-</div>
-<div>
-<%= @book.description %>
-</div>
-<div>
-<%= @book.isbn10 %>
-</div>
-<div>
-<%= @book.isbn13 %>
-</div>
-<div>
-<%= @book.media_type %>
-</div>
-<div>
-<%= @book.page_count %>
-</div>
-<div>
-<%= @book.published_date %>
-</div>
+<script>
+  window.BOOKPILE_REGIONS = {raw(@regions_json)};
+  window.BOOKPILE_ISBN = "{@isbn}";
+</script>
 
-<.form for={@conn}>
-  <select name='country'>
-    <%= for country <- Bookpile.BookSources.list_of_countries do %>
-      <option value={country} selected={country == @country}><%= country %></option>
-    <% end %>
-  </select>
-  <button type="submit">Submit</button>
-</.form>
+<div class="book-content" data-isbn={@isbn}>
 
-<h2><%= gettext("Buy new") %></h2>
+  <%!-- Book block --%>
+  <div class="book-block">
+    <div class="cover-container">
+      <img
+        id="book-cover-img"
+        src={(@book.image || "https://covers.openlibrary.org/b/isbn/#{@isbn}-L.jpg") |> String.replace("http://", "https://") |> String.replace("zoom=1", "zoom=0")}
+        alt={"Cover of #{@book.title}"}
+        class="book-cover-img"
+        width="240"
+        height="360"
+      />
+      <div id="cover-fallback" class="cover-fallback" style="display:none" aria-hidden="true">
+        <span class="cover-format-label">
+          {if @book.media_type, do: @book.media_type, else: "A Book"}
+        </span>
+        <svg viewBox="0 0 200 40" class="cover-wave" aria-hidden="true">
+          <path d="M0 20 Q 25 0 50 20 T 100 20 T 150 20 T 200 20" fill="none" stroke="#1f1a13" stroke-width="1.2"/>
+          <path d="M0 28 Q 25 8 50 28 T 100 28 T 150 28 T 200 28" fill="none" stroke="#1f1a13" stroke-width="1.2" opacity="0.4"/>
+        </svg>
+        <div class="cover-text-block">
+          <div class="cover-title-text">{@book.title}</div>
+          <div class="cover-author-text">{Enum.join(@book.authors, ", ") |> String.upcase()}</div>
+        </div>
+      </div>
+    </div>
 
-<ul>
-<%= for  page <- Bookpile.BookSources.bookstores_for(@country, @book) do %>
-  <li><a href={page.url} target="_blank" rel="noopener"><%= page.name %></a></li>
-<% end %>
-</ul>
+    <div class="book-meta">
+      <span class="tiny-label ochre-label">
+        {if @book.published_date, do: @book.published_date, else: ""}
+      </span>
+      <h1 class="book-title">{@book.title}</h1>
+      <%= if @book.subtitle do %>
+        <div class="book-subtitle">{@book.subtitle}</div>
+      <% end %>
+      <div class="book-author">by {Enum.join(@book.authors, ", ")}</div>
+      <%= if @book.description do %>
+        <p class="book-description">{@book.description}</p>
+      <% end %>
+      <div class="book-chips">
+        <%= if @book.media_type do %>
+          <span class="chip">{@book.media_type}</span>
+        <% end %>
+        <%= if @book.page_count do %>
+          <span class="chip">{@book.page_count} pp.</span>
+        <% end %>
+        <span class="chip">ISBN {@isbn}</span>
+      </div>
+    </div>
+  </div>
 
-<h2><%= gettext("Buy used") %></h2>
+  <%!-- Region bar --%>
+  <div class="region-bar">
+    <div class="region-label-block">
+      <span class="tiny-label">You are browsing</span>
+      <div class="region-city-line">
+        Stockists in <em class="region-city-name" id="region-city-display">Berlin</em>
+      </div>
+    </div>
+    <div class="region-picker-wrapper" id="region-picker-wrapper">
+      <button class="region-picker-btn" id="region-picker-btn" type="button">
+        <span class="picker-btn-inner">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ochre)" stroke-width="1.8">
+            <circle cx="12" cy="10" r="3"/>
+            <path d="M12 2 a8 8 0 0 1 8 8 c0 5.5 -8 12 -8 12 s-8 -6.5 -8 -12 a8 8 0 0 1 8 -8 z"/>
+          </svg>
+          <span><strong id="picker-city-text">Berlin</strong>, <span id="picker-country-text">Germany</span></span>
+        </span>
+        <span class="picker-change">change ▾</span>
+      </button>
+      <div class="region-popover" id="region-popover" style="display:none">
+        <div class="popover-search-row">
+          <input
+            type="text"
+            id="region-search"
+            class="popover-search-input"
+            placeholder="Search a city or country…"
+            autocomplete="off"
+          />
+        </div>
+        <div class="popover-list" id="region-list" role="listbox"></div>
+      </div>
+    </div>
+  </div>
 
-<ul>
-<%= for  page <- Bookpile.BookSources.used_bookstores_for(@country, @book) do %>
-  <li><a href={page.url} target="_blank" rel="noopener"><%= page.name %></a></li>
-<% end %>
-</ul>
+  <%!-- Lists area --%>
+  <div class="lists-area" id="lists-area">
+    <div class="list-col">
+      <div class="list-header">
+        <h2 class="section-heading">Bookshops</h2>
+        <span class="tiny-label" id="shops-count"></span>
+      </div>
+      <div id="shops-list"></div>
+    </div>
+    <div class="list-col">
+      <div class="list-header">
+        <h2 class="section-heading"><em>Libraries</em></h2>
+        <span class="tiny-label">borrow, don't buy</span>
+      </div>
+      <div id="libraries-list"></div>
+    </div>
+  </div>
 
-<h2><%= gettext("Libraries") %></h2>
-
-<ul>
-<%= for  page <- Bookpile.BookSources.libraries_for(@country, @book) do %>
-  <li><a href={page.url} target="_blank" rel="noopener"><%= page.name %></a></li>
-<% end %>
-</ul>
-
-<h2><%= gettext("Book tracking/social networks") %></h2>
-
-<ul>
-<%= for  page <- Bookpile.BookSources.trackers_for(@country, @book) do %>
-  <li><a href={page.url} target="_blank" rel="noopener"><%= page.name %></a></li>
-<% end %>
-</ul>
+</div>

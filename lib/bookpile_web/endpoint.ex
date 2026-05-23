@@ -1,5 +1,5 @@
 defmodule BookpileWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :bookpile
+  use Phoenix.Endpoint, otp_app: :bookpile, adapter: Bandit.PhoenixAdapter
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.

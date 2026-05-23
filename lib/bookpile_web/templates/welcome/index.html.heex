@@ -1,8 +1,50 @@
+<div class="landing-hero">
+  <div class="landing-pitch">
+    <span class="tiny-label ochre-label">Issue №01 · A directory</span>
+    <h1 class="hero-headline">
+      The book<br/>
+      you want,<br/>
+      <em class="ochre-italic">somewhere</em><br/>
+      close by.
+    </h1>
+    <p class="hero-body">
+      Bookpile takes an ISBN and tells you which bookshops, chains and
+      libraries near you have it. No affiliate links. No price-tracking
+      cookies. Just a list of places to walk into.
+    </p>
+  </div>
 
-<%= form_for @changeset, Routes.welcome_path(@conn, :search), fn f -> %>
-   <label>
-     <div>ISBN</div>
-     <%= text_input f, :isbn, placeholder: "Please enter a ISBN number" %>
-   </label>
-   <button type="submit"><%= gettext("Search") %></button>
-<% end %>
+  <div class="landing-form-col">
+    <div class="form-card">
+      <span class="tiny-label">Find a book</span>
+      <form action="/" method="post" id="isbn-form" style="margin-top:14px">
+        <input type="hidden" name="_csrf_token" value={get_csrf_token()} />
+        <label class="isbn-label">Enter an ISBN</label>
+        <div class="input-row">
+          <input
+            type="text"
+            name="isbn"
+            id="isbn-input"
+            class="isbn-input"
+            placeholder="978-…"
+            autocomplete="off"
+          />
+          <button type="submit" class="pile-btn">PILE IT ↗</button>
+        </div>
+        <div class="demo-row">
+          <span class="demo-label">Or peek at the demo</span>
+          <a href={~p"/b/9781529340594"} class="demo-link">Intermezzo →</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="info-grid">
+      <span class="info-num">01</span>
+      <span>Detected in <strong class="city-strong">Berlin, DE</strong> — change on the next page.</span>
+      <span class="info-num">02</span>
+      <span>5 countries · 9 cities · 38 places currently stocked.</span>
+      <span class="info-num">03</span>
+      <span>We never see what you searched.</span>
+    </div>
+  </div>
+</div>

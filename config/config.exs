@@ -12,9 +12,13 @@ config :bookpile,
 
 # Configures the endpoint
 config :bookpile, BookpileWeb.Endpoint,
+  adapter: Bandit.PhoenixAdapter,
   url: [host: "localhost"],
   secret_key_base: "BL61bLudY8o4AlkexYCeGm0Eyd4HXhZL9DmLN+IiTd1QOR4hchlEf1pchWjfC07G",
-  render_errors: [view: BookpileWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [
+    formats: [html: BookpileWeb.ErrorHTML, json: BookpileWeb.ErrorJSON],
+    layout: false
+  ],
   pubsub_server: Bookpile.PubSub,
   live_view: [signing_salt: "fvqN4udx"]
 
@@ -34,7 +38,7 @@ config :swoosh, :api_client, false
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.12.18",
+  version: "0.17.11",
   default: [
     args: ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets),
     cd: Path.expand("../assets", __DIR__),

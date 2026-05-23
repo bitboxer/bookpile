@@ -1,5 +1,7 @@
 import Config
 
+config :bookpile, :google_api_key, System.get_env("BOOKPILE_GOOGLE_API_KEY") || "GOOGLE_API_KEY"
+
 # config/runtime.exs is executed for all environments, including
 # during releases. It is executed after compilation and before the
 # system starts, so it is typically used to load production configuration
@@ -19,8 +21,6 @@ if config_env() == :prod do
     # socket_options: [:inet6],
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
-
-  config :bookpile, :google_api_key, System.get_env("BOOKPILE_GOOGLE_API_KEY") || "GOOGLE_API_KEY"
 
   secret_key_base =
     System.get_env("SECRET_KEY_BASE") ||

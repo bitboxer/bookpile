@@ -1,0 +1,14 @@
+<div class="book-page">
+  <div class="book-topbar">
+    <a href="/" class="logo-link">
+      <svg class="logo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ochre)" stroke-width="1.6">
+        <path d="M3 5 L3 20 L11 18 L11 4 Z" fill="var(--ochre-soft)"/>
+        <path d="M21 5 L21 20 L13 18 L13 4 Z" fill="var(--paper)"/>
+      </svg>
+      <span class="logo-text">bookpile</span>
+    </a>
+    <span class="book-path">/b/{assigns[:isbn] || ""}</span>
+    <button class="share-btn" id="share-btn" data-isbn={assigns[:isbn] || ""}>Share ↗</button>
+  </div>
+  {@inner_content}
+</div>

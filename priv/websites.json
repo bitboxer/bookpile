@@ -1,0 +1,231 @@
+{
+  "regions": {
+    "Germany": {
+      "flag": "🇩🇪",
+      "cities": {
+        "Berlin": {
+          "shops": [
+            {"name": "Buchbox Berlin", "note": "Independent Buchhandlung in Prenzlauer Berg", "url": "https://buchboxberlin.de/shop/search?titel={{ISBN}}"},
+            {"name": "Dussmann das KulturKaufhaus", "note": "Four-floor cultural department store on Friedrichstraße", "url": "https://www.kulturkaufhaus.de/de/search?q={{ISBN}}"},
+            {"name": "Saint George's Bookshop", "note": "English-language bookshop in Prenzlauer Berg", "url": "https://www.saintgeorgesbookshop.com/?s={{ISBN}}"},
+            {"name": "Buchhandlung Walther König", "note": "Art and literature specialist in Mitte", "url": "https://www.buchhandlung-walther-koenig.de/search?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "Zentral- und Landesbibliothek Berlin", "note": "Largest public library in Berlin, VÖBB network", "url": "https://voebb.de/aDISWeb/app?service=direct/0/Home/$DirectLink&sp=SOPAC62&sp=SAK{{ISBN}}"},
+            {"name": "Staatsbibliothek zu Berlin", "note": "Research library, Potsdamer Straße & Unter den Linden", "url": "https://stabikat.de/DB=1/CMD?ACT=SRCHA&IKT=1007&TRM={{ISBN}}"},
+            {"name": "Voebb Overdrive", "note": "E-books and audiobooks via the Berlin library network", "url": "https://voebb.overdrive.com/search?query={{ISBN}}"}
+          ]
+        },
+        "Munich": {
+          "shops": [
+            {"name": "Hugendubel", "note": "Flagship on Marienplatz, Munich since 1893", "url": "https://www.hugendubel.de/de/search?searchTerm={{ISBN}}"},
+            {"name": "Lehmkuhl", "note": "Schwabing institution since 1903", "url": "https://www.lehmkuhl.net/suche?q={{ISBN}}"},
+            {"name": "Buch & Töne", "note": "Independent Schwanthalerhöhe bookshop", "url": "https://www.buchundtoene.de/suche?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "Münchner Stadtbibliothek", "note": "Public library system with 23 branches across Munich", "url": "https://www.muenchner-stadtbibliothek.de/katalog?q={{ISBN}}"},
+            {"name": "Bayerische Staatsbibliothek", "note": "One of Europe's largest research libraries", "url": "https://opacplus.bsb-muenchen.de/search?isbn={{ISBN}}"}
+          ]
+        },
+        "Hamburg": {
+          "shops": [
+            {"name": "Cohen + Dobernigg", "note": "Independent bookshop in Sternschanze, since 1976", "url": "https://www.codobuch.de/suche?q={{ISBN}}"},
+            {"name": "Felix Jud", "note": "Fine stationery and books in Neuer Wall since 1923", "url": "https://www.felixjud.de/suche?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "Bücherhallen Hamburg", "note": "Network of 32 public library branches", "url": "https://www.buecherhallen.de/recherche.html?q={{ISBN}}"},
+            {"name": "Staats- und Universitätsbibliothek Hamburg", "note": "Major research library of Hamburg University", "url": "https://katalog.sub.uni-hamburg.de/Search/Results?lookfor={{ISBN}}&type=ISN"}
+          ]
+        },
+        "Cologne": {
+          "shops": [
+            {"name": "Gonski", "note": "Independent bookshop in the Belgian Quarter", "url": "https://www.gonski.de/suche?q={{ISBN}}"},
+            {"name": "Bücher Bittner", "note": "Ehrenfeld institution since 1983", "url": "https://www.buecherbittner.de/suche?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "Stadtbibliothek Köln", "note": "Cologne's public library network", "url": "https://katalog.stbib-koeln.de/alswww2.dll/Obj_423921629734321?Style=Portal3&Lang=GER&Method=QueryWithLimits&q.Query={{ISBN}}"}
+          ]
+        }
+      },
+      "shops": [
+        {"name": "Genialokal", "note": "Platform connecting 700+ independent German bookshops", "url": "https://www.genialokal.de/Suche/?q={{ISBN}}"},
+        {"name": "Thalia", "note": "Germany's largest bookshop chain", "url": "https://www.thalia.de/suche?sq={{ISBN}}"},
+        {"name": "Osiander", "note": "Regional chain strong in Baden-Württemberg", "url": "https://www.osiander.de/suche?sq={{ISBN}}"},
+        {"name": "bücher.de", "note": "German online retailer with broad catalogue", "url": "https://www.buecher.de/isbn/{{ISBN}}"},
+        {"name": "Bookshop.org DE", "note": "Revenue shared with independent bookshops", "url": "https://bookshop.org/de/books?keywords={{ISBN}}"},
+        {"name": "booklooker", "note": "Marketplace for used and out-of-print books", "url": "https://www.booklooker.de/app/result.php?mediaType=0&isbn={{ISBN}}"},
+        {"name": "Amazon.de", "note": "Ships from fulfilment centres in Leipzig & Bad Hersfeld", "url": "https://www.amazon.de/dp/{{ISBN}}"}
+      ],
+      "libraries": []
+    },
+    "Austria": {
+      "flag": "🇦🇹",
+      "cities": {
+        "Vienna": {
+          "shops": [
+            {"name": "Morawa", "note": "Vienna's iconic independent bookshop chain", "url": "https://www.morawa.at/search?q={{ISBN}}"},
+            {"name": "Buchhandlung Hartleben", "note": "Independent bookshop in the 1st district", "url": "https://www.hartleben.at/suche?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "Wienbibliothek", "note": "Vienna City Library", "url": "https://www.wienbibliothek.at/suche?q={{ISBN}}"},
+            {"name": "Österreichische Nationalbibliothek", "note": "Austrian National Library at Josefsplatz", "url": "https://search.onb.ac.at/primo-explore/search?query=isbn,contains,{{ISBN}}"}
+          ]
+        }
+      },
+      "shops": [
+        {"name": "Thalia", "note": "Largest chain in Austria", "url": "https://www.thalia.at/suche?sq={{ISBN}}"},
+        {"name": "Amazon.de", "note": "Ships to Austria from German fulfilment centres", "url": "https://www.amazon.de/dp/{{ISBN}}"}
+      ],
+      "libraries": []
+    },
+    "United States": {
+      "flag": "🇺🇸",
+      "cities": {
+        "New York": {
+          "shops": [
+            {"name": "Strand", "note": "18 miles of books, beloved New York institution since 1927", "url": "https://www.strandbooks.com/search?type=product&q={{ISBN}}"},
+            {"name": "McNally Jackson", "note": "Independent with locations in SoHo, Nolita, Williamsburg, Seaport", "url": "https://www.mcnallyjackson.com/search?type=product&q={{ISBN}}"},
+            {"name": "Three Lives & Company", "note": "West Village institution since 1978", "url": "https://www.threelives.com/search?type=product&q={{ISBN}}"},
+            {"name": "Housing Works Bookstore", "note": "Soho shop that donates all profits to Housing Works", "url": "https://www.housingworksbookstore.com/search?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "New York Public Library", "note": "92 locations across Manhattan, the Bronx and Staten Island", "url": "https://catalog.nypl.org/search/?searchtype=i&query={{ISBN}}"},
+            {"name": "Brooklyn Public Library", "note": "60 branches across Brooklyn", "url": "https://www.bklynlibrary.org/research/search?search={{ISBN}}"}
+          ]
+        },
+        "San Francisco": {
+          "shops": [
+            {"name": "City Lights", "note": "Beat-era landmark in North Beach, since 1953", "url": "https://www.citylights.com/search/?q={{ISBN}}"},
+            {"name": "Green Apple Books", "note": "Richmond District institution since 1967", "url": "https://www.greenapplebooks.com/search?query={{ISBN}}"},
+            {"name": "Dog Eared Books", "note": "Mission District independent since 1992", "url": "https://www.dogearedbooks.com/search?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "San Francisco Public Library", "note": "28 neighbourhood branches across the city", "url": "https://sfpl.org/index.php?pg=2400002&lookfor={{ISBN}}&type=ISN"},
+            {"name": "Internet Archive", "note": "Non-profit digital library headquartered in SF", "url": "https://archive.org/search?query={{ISBN}}"}
+          ]
+        },
+        "Los Angeles": {
+          "shops": [
+            {"name": "Skylight Books", "note": "Los Feliz neighbourhood bookshop since 1999", "url": "https://www.skylightbooks.com/search?query={{ISBN}}"},
+            {"name": "The Last Bookstore", "note": "Iconic multi-level shop in Downtown LA", "url": "https://www.lastbookstorela.com/search?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "Los Angeles Public Library", "note": "72 branches across Los Angeles", "url": "https://catalog.lapl.org/polaris/search/searchresults.aspx?ctx=1.1033.0.0.1&type=ISBN&term={{ISBN}}"}
+          ]
+        },
+        "Chicago": {
+          "shops": [
+            {"name": "Unabridged Bookstore", "note": "Boystown independent since 1980", "url": "https://www.unabridgedbookstore.com/search?query={{ISBN}}"},
+            {"name": "Seminary Co-op", "note": "Hyde Park cooperative, scholar-favourite since 1961", "url": "https://www.semcoop.com/search?query={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "Chicago Public Library", "note": "80 branches across the city", "url": "https://chipl.bibliocommons.com/v2/search?query={{ISBN}}&searchType=isbn"}
+          ]
+        }
+      },
+      "shops": [
+        {"name": "Bookshop.org", "note": "Revenue shared with independent bookshops nationwide", "url": "https://bookshop.org/books?keywords={{ISBN}}"},
+        {"name": "Powell's", "note": "Portland-based independent, ships nationwide", "url": "https://www.powells.com/searchresults?keyword={{ISBN}}"},
+        {"name": "Barnes & Noble", "note": "Nationwide chain with 600+ stores", "url": "https://www.barnesandnoble.com/s/{{ISBN}}"},
+        {"name": "Amazon", "note": "Ships from regional fulfilment centres", "url": "https://www.amazon.com/dp/{{ISBN}}"}
+      ],
+      "libraries": []
+    },
+    "United Kingdom": {
+      "flag": "🇬🇧",
+      "cities": {
+        "London": {
+          "shops": [
+            {"name": "Foyles", "note": "Legendary independent on Charing Cross Road since 1903", "url": "https://www.foyles.co.uk/books/search?term={{ISBN}}"},
+            {"name": "Daunt Books", "note": "Beautiful Edwardian shop on Marylebone High Street", "url": "https://www.dauntbooks.co.uk/shop/?s={{ISBN}}"},
+            {"name": "Persephone Books", "note": "Specialist in neglected women's fiction, Lamb's Conduit Street", "url": "https://www.persephonebooks.co.uk/pages/search-results?q={{ISBN}}"},
+            {"name": "Gay's The Word", "note": "UK's oldest LGBTQ+ bookshop, Bloomsbury since 1979", "url": "https://www.gaystheword.co.uk/search?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "British Library", "note": "National library at St Pancras — world's largest collection", "url": "https://explore.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)={{ISBN}}"},
+            {"name": "London Libraries Consortium", "note": "Unified catalogue across 17 London boroughs", "url": "https://londonlibraries.gov.uk/search?q={{ISBN}}"}
+          ]
+        },
+        "Edinburgh": {
+          "shops": [
+            {"name": "Topping & Company", "note": "New shop in a beautiful space on Blenheim Place", "url": "https://www.toppingbooks.co.uk/search?q={{ISBN}}"},
+            {"name": "Edinburgh Books", "note": "West Port, independent since 1978", "url": "https://www.edinburghbooks.co.uk/search?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "Edinburgh City Libraries", "note": "29 branches across Edinburgh", "url": "https://libcat.edinburgh.gov.uk/iguana/www.main.cls?surl=search&p=1&v=list&f=IS&q={{ISBN}}"}
+          ]
+        }
+      },
+      "shops": [
+        {"name": "Bookshop.org UK", "note": "Revenue shared with independent bookshops across the UK", "url": "https://uk.bookshop.org/books?keywords={{ISBN}}"},
+        {"name": "Hive", "note": "Ships via your chosen local independent bookshop", "url": "https://www.hive.co.uk/Search?Keywords={{ISBN}}"},
+        {"name": "Waterstones", "note": "UK's largest book chain with 300+ stores", "url": "https://www.waterstones.com/books/search/term/{{ISBN}}"},
+        {"name": "Blackwell's", "note": "Oxford-founded academic bookseller, ships UK-wide", "url": "https://blackwells.co.uk/bookshop/search/?isbn={{ISBN}}"},
+        {"name": "Amazon UK", "note": "Ships from UK fulfilment centres", "url": "https://www.amazon.co.uk/dp/{{ISBN}}"}
+      ],
+      "libraries": []
+    },
+    "France": {
+      "flag": "🇫🇷",
+      "cities": {
+        "Paris": {
+          "shops": [
+            {"name": "Librairie Galignani", "note": "First English bookshop on the Continent, rue de Rivoli since 1801", "url": "https://www.galignani.fr/search/?q={{ISBN}}"},
+            {"name": "Shakespeare and Company", "note": "Legendary English-language bookshop opposite Notre-Dame", "url": "https://www.shakespeareandcompany.com/search?q={{ISBN}}"},
+            {"name": "La Hune", "note": "Saint-Germain-des-Prés arts and literature institution", "url": "https://www.lahune.fr/recherche?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "Bibliothèque nationale de France", "note": "National library, four sites across Paris", "url": "https://catalogue.bnf.fr/recherche-simple-isbn.do?query={{ISBN}}"},
+            {"name": "Bibliothèques de la Ville de Paris", "note": "57 public lending libraries across Paris", "url": "https://bibliotheques.paris.fr/Default/search.aspx?SC_SEARCH={{ISBN}}"}
+          ]
+        }
+      },
+      "shops": [
+        {"name": "Place des Libraires", "note": "Portal connecting 1,200+ independent French bookshops", "url": "https://www.placedeslibraires.fr/livre/?q={{ISBN}}"},
+        {"name": "Fnac", "note": "France's largest cultural chain", "url": "https://www.fnac.com/SearchResult/ResultList.aspx?SCat=0&sft=1&Search={{ISBN}}"},
+        {"name": "Cultura", "note": "Books, music and hobbies — ships France-wide", "url": "https://www.cultura.com/catalogsearch/result/?q={{ISBN}}"},
+        {"name": "Decitre", "note": "Lyon-founded chain, ships France-wide", "url": "https://www.decitre.fr/recherche/resultat.aspx?q={{ISBN}}"},
+        {"name": "Amazon.fr", "note": "Ships from French fulfilment centres", "url": "https://www.amazon.fr/dp/{{ISBN}}"}
+      ],
+      "libraries": []
+    },
+    "Netherlands": {
+      "flag": "🇳🇱",
+      "cities": {
+        "Amsterdam": {
+          "shops": [
+            {"name": "Athenaeum Boekhandel", "note": "Spui square institution since 1966", "url": "https://www.athenaeum.nl/zoeken?q={{ISBN}}"},
+            {"name": "American Book Center", "note": "English-language bookshop on the Spui", "url": "https://www.abc.nl/search?q={{ISBN}}"},
+            {"name": "Mendo", "note": "Design, art and photography books in the 9 Streets", "url": "https://www.mendo.nl/search?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "Openbare Bibliotheek Amsterdam", "note": "OBA — 26 branches across Amsterdam", "url": "https://www.oba.nl/catalogus.html?q={{ISBN}}"}
+          ]
+        },
+        "Rotterdam": {
+          "shops": [
+            {"name": "Donner", "note": "Rotterdam's independent bookshop in the Lijnbaan", "url": "https://www.donner.nl/search?q={{ISBN}}"}
+          ],
+          "libraries": [
+            {"name": "Bibliotheek Rotterdam", "note": "Central library and 28 branches", "url": "https://bibliotheek.rotterdam.nl/zoeken/?q={{ISBN}}"}
+          ]
+        }
+      },
+      "shops": [
+        {"name": "Libris", "note": "Network of 75+ independent Dutch bookshops", "url": "https://www.libris.nl/search?q={{ISBN}}"},
+        {"name": "Bol", "note": "Netherlands' leading online retailer", "url": "https://www.bol.com/nl/rnwy/search?q={{ISBN}}"},
+        {"name": "Amazon.nl", "note": "Ships within the Netherlands", "url": "https://www.amazon.nl/dp/{{ISBN}}"}
+      ],
+      "libraries": [
+        {"name": "Koninklijke Bibliotheek", "note": "National Library of the Netherlands in Den Haag", "url": "https://www.kb.nl/zoeken?q={{ISBN}}"}
+      ]
+    }
+  },
+  "everywhere": {
+    "shops": [],
+    "libraries": [
+      {"name": "WorldCat", "note": "Search the catalogues of 17,000+ libraries worldwide", "url": "https://search.worldcat.org/search?q={{ISBN}}"},
+      {"name": "Open Library", "note": "Internet Archive's open digital lending library", "url": "https://openlibrary.org/isbn/{{ISBN}}"}
+    ]
+  }
+}
