@@ -12,158 +12,6 @@ window.addEventListener("phx:page-loading-stop", () => topbar.hide())
 liveSocket.connect()
 window.liveSocket = liveSocket
 
-// ─── URL builder ────────────────────────────────────────────────────────────
-
-const URL_PATTERNS = {
-  'genialokal.de':          (isbn) => `https://www.genialokal.de/Suche/?q=${isbn}`,
-  'hugendubel.de':          (isbn) => `https://www.hugendubel.de/de/search?searchTerm=${isbn}`,
-  'thalia.de':              (isbn) => `https://www.thalia.de/suche?sq=${isbn}`,
-  'buchhandlung-walther-koenig.de': (isbn) => `https://www.buchhandlung-walther-koenig.de/search?q=${isbn}`,
-  'bookshop.org/de':        (isbn) => `https://bookshop.org/de/books?keywords=${isbn}`,
-  'amazon.de':              (isbn) => `https://www.amazon.de/dp/${isbn}`,
-  'voebb.de':               (isbn) => `https://voebb.de/search?q=${isbn}`,
-  'staatsbibliothek-berlin.de': (isbn) => `https://stabikat.de/DB=1/CMD?ACT=SRCHA&IKT=1007&TRM=${isbn}`,
-  'worldcat.org':           (isbn) => `https://search.worldcat.org/search?q=${isbn}`,
-  'openlibrary.org':        (isbn) => `https://openlibrary.org/isbn/${isbn}`,
-  'muenchner-stadtbibliothek.de': (isbn) => `https://www.muenchner-stadtbibliothek.de/katalog?q=${isbn}`,
-  'bsb-muenchen.de':        (isbn) => `https://opacplus.bsb-muenchen.de/search?isbn=${isbn}`,
-  'lehmkuhl.net':           (isbn) => `https://www.lehmkuhl.net/suche?q=${isbn}`,
-  'buecherhallen.de':       (isbn) => `https://www.buecherhallen.de/recherche.html?q=${isbn}`,
-  'sub.uni-hamburg.de':     (isbn) => `https://katalog.sub.uni-hamburg.de/Search/Results?lookfor=${isbn}&type=ISN`,
-  'codobuch.de':            (isbn) => `https://www.codobuch.de/suche?q=${isbn}`,
-  'bookshop.org':           (isbn) => `https://bookshop.org/books?keywords=${isbn}`,
-  'strandbooks.com':        (isbn) => `https://www.strandbooks.com/search?type=product&q=${isbn}`,
-  'mcnallyjackson.com':     (isbn) => `https://www.mcnallyjackson.com/search?type=product&q=${isbn}`,
-  'powells.com':            (isbn) => `https://www.powells.com/searchresults?keyword=${isbn}`,
-  'barnesandnoble.com':     (isbn) => `https://www.barnesandnoble.com/s/${isbn}`,
-  'amazon.com':             (isbn) => `https://www.amazon.com/dp/${isbn}`,
-  'nypl.org':               (isbn) => `https://catalog.nypl.org/search/?searchtype=i&query=${isbn}`,
-  'bklynlibrary.org':       (isbn) => `https://www.bklynlibrary.org/research/search?search=${isbn}`,
-  'citylights.com':         (isbn) => `https://www.citylights.com/search/?q=${isbn}`,
-  'greenapplebooks.com':    (isbn) => `https://www.greenapplebooks.com/search?query=${isbn}`,
-  'sfpl.org':               (isbn) => `https://sfpl.org/index.php?pg=2400002&lookfor=${isbn}&type=ISN`,
-  'archive.org':            (isbn) => `https://archive.org/search?query=${isbn}`,
-  'uk.bookshop.org':        (isbn) => `https://uk.bookshop.org/books?keywords=${isbn}`,
-  'hive.co.uk':             (isbn) => `https://www.hive.co.uk/Search?Keywords=${isbn}`,
-  'foyles.co.uk':           (isbn) => `https://www.foyles.co.uk/books/search?term=${isbn}`,
-  'waterstones.com':        (isbn) => `https://www.waterstones.com/books/search/term/${isbn}`,
-  'blackwells.co.uk':       (isbn) => `https://blackwells.co.uk/bookshop/search/?isbn=${isbn}`,
-  'amazon.co.uk':           (isbn) => `https://www.amazon.co.uk/dp/${isbn}`,
-  'bl.uk':                  (isbn) => `https://explore.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)=${isbn}`,
-  'londonlibraries.gov.uk': (isbn) => `https://londonlibraries.gov.uk/search?q=${isbn}`,
-  'placedeslibraires.fr':   (isbn) => `https://www.placedeslibraires.fr/livre/?q=${isbn}`,
-  'galignani.fr':            (isbn) => `https://www.galignani.fr/search/?q=${isbn}`,
-  'fnac.com':               (isbn) => `https://www.fnac.com/SearchResult/ResultList.aspx?SCat=0&sft=1&Search=${isbn}`,
-  'cultura.com':            (isbn) => `https://www.cultura.com/catalogsearch/result/?q=${isbn}`,
-  'decitre.fr':             (isbn) => `https://www.decitre.fr/recherche/resultat.aspx?q=${isbn}`,
-  'amazon.fr':              (isbn) => `https://www.amazon.fr/dp/${isbn}`,
-  'bnf.fr':                 (isbn) => `https://catalogue.bnf.fr/recherche-simple-isbn.do?query=${isbn}`,
-  'bibliotheques.paris.fr': (isbn) => `https://bibliotheques.paris.fr/Default/search.aspx?SC_SEARCH=${isbn}`,
-  'athenaeum.nl':           (isbn) => `https://www.athenaeum.nl/zoeken?q=${isbn}`,
-  'libris.nl':              (isbn) => `https://www.libris.nl/search?q=${isbn}`,
-  'abc.nl':                 (isbn) => `https://www.abc.nl/search?q=${isbn}`,
-  'bol.com':                (isbn) => `https://www.bol.com/nl/rnwy/search?q=${isbn}`,
-  'amazon.nl':              (isbn) => `https://www.amazon.nl/dp/${isbn}`,
-  'oba.nl':                 (isbn) => `https://www.oba.nl/catalogus.html?q=${isbn}`,
-  'kb.nl':                  (isbn) => `https://www.kb.nl/zoeken?q=${isbn}`,
-};
-
-function entryUrl(domain, isbn) {
-  const fn = URL_PATTERNS[domain];
-  return fn ? fn(isbn) : `https://${domain}`;
-}
-
-function shopGlyph(domain) {
-  const root = (domain || '').replace(/^www\./, '').split('.')[0];
-  return (root[0] || '?').toUpperCase();
-}
-
-const LIBRARY_ICON = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6">
-  <path d="M3 9 L12 4 L21 9"/>
-  <path d="M5 9 V19 M9 9 V19 M15 9 V19 M19 9 V19"/>
-  <path d="M3 20 H21"/>
-</svg>`;
-
-function isMobile() {
-  return window.innerWidth <= 720;
-}
-
-// ─── Listings renderer ───────────────────────────────────────────────────────
-
-function renderListingRow(entry, kind, index, isbn) {
-  const url = entryUrl(entry.domain, isbn);
-  const actionLabel = kind === 'library' ? 'Search ↗' : `${entry.domain} ↗`;
-  const iconContent = kind === 'library'
-    ? LIBRARY_ICON
-    : shopGlyph(entry.domain);
-  const num = String(index + 1).padStart(2, '0');
-  const bookTitle = document.querySelector('.book-title')?.textContent || 'this book';
-  const ariaLabel = kind === 'library'
-    ? `Search ${entry.name} for ${bookTitle}`
-    : `Buy ${bookTitle} on ${entry.name}`;
-
-  return `<a href="${url}" target="_blank" rel="noopener noreferrer"
-      class="listing-row" aria-label="${ariaLabel}">
-    <span class="listing-index">${num}</span>
-    <span class="listing-icon">${iconContent}</span>
-    <span class="listing-info">
-      <span class="listing-name">${entry.name}</span>
-      <span class="listing-note">${entry.note}</span>
-      ${isMobile() ? `<span class="listing-action-mobile">${actionLabel}</span>` : ''}
-    </span>
-    <span class="listing-action">${actionLabel}</span>
-  </a>`;
-}
-
-function renderListings(country, city) {
-  const regions = window.BOOKPILE_REGIONS;
-  const isbn = window.BOOKPILE_ISBN || '';
-  if (!regions) return;
-
-  const cityData = regions[country]?.cities?.[city] || {shops: [], libraries: []};
-  const {shops, libraries} = cityData;
-
-  const shopsList = document.getElementById('shops-list');
-  const librariesList = document.getElementById('libraries-list');
-  const shopsCount = document.getElementById('shops-count');
-  const regionCityDisplay = document.getElementById('region-city-display');
-
-  if (shopsList) shopsList.innerHTML = shops.map((s, i) => renderListingRow(s, 'shop', i, isbn)).join('');
-  if (librariesList) librariesList.innerHTML = libraries.map((l, i) => renderListingRow(l, 'library', i, isbn)).join('');
-  if (shopsCount) shopsCount.textContent = `${shops.length} places`;
-  if (regionCityDisplay) regionCityDisplay.textContent = city;
-}
-
-// ─── State ───────────────────────────────────────────────────────────────────
-
-let currentCountry = localStorage.getItem('bp_country') || 'Germany';
-let currentCity = localStorage.getItem('bp_city') || 'Berlin';
-
-function setLocation(country, city) {
-  currentCountry = country;
-  currentCity = city;
-  localStorage.setItem('bp_country', country);
-  localStorage.setItem('bp_city', city);
-
-  // Update picker button text
-  const pickerCity = document.getElementById('picker-city-text');
-  const pickerCountry = document.getElementById('picker-country-text');
-  if (pickerCity) pickerCity.textContent = city;
-  if (pickerCountry) pickerCountry.textContent = country;
-
-  // Dim and reload
-  const listsArea = document.getElementById('lists-area');
-  if (listsArea) {
-    listsArea.classList.add('reloading');
-    setTimeout(() => {
-      renderListings(country, city);
-      listsArea.classList.remove('reloading');
-    }, 320);
-  } else {
-    renderListings(country, city);
-  }
-}
-
 // ─── Region picker ───────────────────────────────────────────────────────────
 
 function buildLocations() {
@@ -172,13 +20,14 @@ function buildLocations() {
   return Object.entries(regions).flatMap(([country, c]) =>
     Object.keys(c.cities).map(city => ({
       country, city, flag: c.flag,
-      label: `${city}, ${country}`,
     }))
   );
 }
 
-function renderLocationList(query, selectedCountry, selectedCity) {
+function renderLocationList(query) {
   const locations = buildLocations();
+  const selectedCountry = window.BOOKPILE_COUNTRY;
+  const selectedCity = window.BOOKPILE_CITY;
   const q = (query || '').trim().toLowerCase();
   const filtered = q
     ? locations.filter(loc =>
@@ -209,10 +58,9 @@ function renderLocationList(query, selectedCountry, selectedCity) {
 
   list.querySelectorAll('.popover-location-row').forEach(row => {
     row.addEventListener('click', () => {
-      const country = row.dataset.country;
-      const city = row.dataset.city;
       closePopover();
-      setLocation(country, city);
+      const params = new URLSearchParams({country: row.dataset.country, city: row.dataset.city});
+      window.location.href = `/b/${window.BOOKPILE_ISBN}?${params}`;
     });
   });
 }
@@ -222,7 +70,7 @@ function openPopover() {
   const search = document.getElementById('region-search');
   if (!popover) return;
   popover.style.display = 'block';
-  renderLocationList('', currentCountry, currentCity);
+  renderLocationList('');
   setTimeout(() => search?.focus(), 0);
 }
 
@@ -249,7 +97,7 @@ function setupRegionPicker() {
 
   const search = document.getElementById('region-search');
   search?.addEventListener('input', (e) => {
-    renderLocationList(e.target.value, currentCountry, currentCity);
+    renderLocationList(e.target.value);
   });
   search?.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closePopover();
@@ -323,23 +171,6 @@ function setupCoverFallback() {
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.BOOKPILE_REGIONS) {
-    // Restore saved location
-    const savedCountry = localStorage.getItem('bp_country');
-    const savedCity = localStorage.getItem('bp_city');
-    const regions = window.BOOKPILE_REGIONS;
-
-    if (savedCountry && savedCity && regions[savedCountry]?.cities?.[savedCity]) {
-      currentCountry = savedCountry;
-      currentCity = savedCity;
-    }
-
-    // Sync picker button to current location
-    const pickerCity = document.getElementById('picker-city-text');
-    const pickerCountry = document.getElementById('picker-country-text');
-    if (pickerCity) pickerCity.textContent = currentCity;
-    if (pickerCountry) pickerCountry.textContent = currentCountry;
-
-    renderListings(currentCountry, currentCity);
     setupRegionPicker();
     setupCoverFallback();
   }

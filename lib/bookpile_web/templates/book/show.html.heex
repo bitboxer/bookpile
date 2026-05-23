@@ -1,6 +1,8 @@
 <script>
-  window.BOOKPILE_REGIONS = {raw(@regions_json)};
-  window.BOOKPILE_ISBN = "{@isbn}";
+  window.BOOKPILE_REGIONS = <%= raw(@regions_json) %>;
+  window.BOOKPILE_ISBN = "<%= @isbn %>";
+  window.BOOKPILE_COUNTRY = "<%= @country %>";
+  window.BOOKPILE_CITY = "<%= @city %>";
 </script>
 
 <div class="book-content" data-isbn={@isbn}>
@@ -60,7 +62,7 @@
     <div class="region-label-block">
       <span class="tiny-label">You are browsing</span>
       <div class="region-city-line">
-        Stockists in <em class="region-city-name" id="region-city-display">Berlin</em>
+        Stockists in <em class="region-city-name">{@city}</em>
       </div>
     </div>
     <div class="region-picker-wrapper" id="region-picker-wrapper">
@@ -70,7 +72,7 @@
             <circle cx="12" cy="10" r="3"/>
             <path d="M12 2 a8 8 0 0 1 8 8 c0 5.5 -8 12 -8 12 s-8 -6.5 -8 -12 a8 8 0 0 1 8 -8 z"/>
           </svg>
-          <span><strong id="picker-city-text">Berlin</strong>, <span id="picker-country-text">Germany</span></span>
+          <span><strong>{@city}</strong>, <span>{@country}</span></span>
         </span>
         <span class="picker-change">change ▾</span>
       </button>
@@ -94,16 +96,50 @@
     <div class="list-col">
       <div class="list-header">
         <h2 class="section-heading">Bookshops</h2>
-        <span class="tiny-label" id="shops-count"></span>
+        <span class="tiny-label">{length(@shops)} places</span>
       </div>
-      <div id="shops-list"></div>
+      <div id="shops-list">
+        <%= for {shop, i} <- Enum.with_index(@shops) do %>
+          <a href={listing_url(shop, @isbn)} target="_blank" rel="noopener noreferrer"
+              class="listing-row" aria-label={"Buy #{@book.title} on #{shop["name"]}"}>
+            <span class="listing-index">{String.pad_leading(to_string(i + 1), 2, "0")}</span>
+            <span class="listing-icon">{shop_glyph(shop)}</span>
+            <span class="listing-info">
+              <span class="listing-name">{shop["name"]}</span>
+              <span class="listing-note">{shop["note"]}</span>
+              <span class="listing-action-mobile">{listing_domain(shop)} ↗</span>
+            </span>
+            <span class="listing-action">{listing_domain(shop)} ↗</span>
+          </a>
+        <% end %>
+      </div>
     </div>
     <div class="list-col">
       <div class="list-header">
         <h2 class="section-heading"><em>Libraries</em></h2>
         <span class="tiny-label">borrow, don't buy</span>
       </div>
-      <div id="libraries-list"></div>
+      <div id="libraries-list">
+        <%= for {lib, i} <- Enum.with_index(@libraries) do %>
+          <a href={listing_url(lib, @isbn)} target="_blank" rel="noopener noreferrer"
+              class="listing-row" aria-label={"Search #{lib["name"]} for #{@book.title}"}>
+            <span class="listing-index">{String.pad_leading(to_string(i + 1), 2, "0")}</span>
+            <span class="listing-icon">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M3 9 L12 4 L21 9"/>
+                <path d="M5 9 V19 M9 9 V19 M15 9 V19 M19 9 V19"/>
+                <path d="M3 20 H21"/>
+              </svg>
+            </span>
+            <span class="listing-info">
+              <span class="listing-name">{lib["name"]}</span>
+              <span class="listing-note">{lib["note"]}</span>
+              <span class="listing-action-mobile">Search ↗</span>
+            </span>
+            <span class="listing-action">Search ↗</span>
+          </a>
+        <% end %>
+      </div>
     </div>
   </div>
 

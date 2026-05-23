@@ -1,6 +1,8 @@
 import Config
 
-config :bookpile, :google_api_key, System.get_env("BOOKPILE_GOOGLE_API_KEY") || "GOOGLE_API_KEY"
+if config_env() != :test do
+  config :bookpile, :google_api_key, System.get_env("BOOKPILE_GOOGLE_API_KEY") || "GOOGLE_API_KEY"
+end
 
 # config/runtime.exs is executed for all environments, including
 # during releases. It is executed after compilation and before the
