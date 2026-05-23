@@ -117,11 +117,11 @@ function setupShareButton() {
 
   btn.addEventListener('click', () => {
     const isbn = btn.dataset.isbn;
-    const url = `bookpile.org/b/${isbn}`;
+    const url = `https://bookpile.org/b/${isbn}`;
     const original = btn.textContent;
 
-    const done = () => {
-      btn.textContent = '✓ Link copied';
+    const done = (label = '✓ Link copied') => {
+      btn.textContent = label;
       btn.classList.add('copied');
       setTimeout(() => {
         btn.textContent = original;
@@ -129,8 +129,10 @@ function setupShareButton() {
       }, 1500);
     };
 
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(url).then(done).catch(() => fallbackCopy(url, done));
+    if (navigator.share) {
+      navigator.share({ url }).then(() => done('✓ Shared')).catch(() => {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => done()).catch(() => fallbackCopy(url, done));
     } else {
       fallbackCopy(url, done);
     }

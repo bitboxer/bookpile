@@ -1,0 +1,24 @@
+{
+  "entities": {
+    "inv:298bb94e9aa82f63b1613bee7a9aab17": {
+      "_id": "298bb94e9aa82f63b1613bee7a9aab17",
+      "type": "edition",
+      "labels": {
+        "fromclaims": "Dungeon Crawler Carl"
+      },
+      "claims": {
+        "wdt:P1476": ["Dungeon Crawler Carl"],
+        "wdt:P577": ["2020"],
+        "wdt:P212": ["978-0-593-82025-4"],
+        "wdt:P957": ["0-593-82025-8"],
+        "invp:P2": ["7fedca42338b7f87f0da1bad109d19fae86f735e"]
+      },
+      "image": {
+        "url": "/img/entities/7fedca42338b7f87f0da1bad109d19fae86f735e"
+      }
+    }
+  },
+  "redirects": {
+    "isbn:9780593820254": "inv:298bb94e9aa82f63b1613bee7a9aab17"
+  }
+}

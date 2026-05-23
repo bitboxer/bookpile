@@ -7,6 +7,12 @@ defmodule BookpileWeb.BookController do
 
   plug :put_layout, html: {BookpileWeb.Layouts, :book}
 
+  def show(conn, %{"isbn" => raw_isbn, "refresh" => "true"}) do
+    isbn = raw_isbn |> String.replace(~r/[\s-]/, "") |> String.trim()
+    Books.refresh_book(isbn)
+    redirect(conn, to: ~p"/b/#{isbn}")
+  end
+
   def show(conn, %{"isbn" => raw_isbn} = params) do
     isbn = raw_isbn |> String.replace(~r/[\s-]/, "") |> String.trim()
     book = Books.get_book_by_isbn(isbn)
@@ -22,8 +28,10 @@ defmodule BookpileWeb.BookController do
         regions_json: BookSources.regions_json(),
         country: country,
         city: city,
-        shops: listings["shops"] || [],
-        libraries: listings["libraries"] || []
+        local_shops: listings["local_shops"] || [],
+        national_shops: listings["national_shops"] || [],
+        libraries: listings["libraries"] || [],
+        trackers: listings["trackers"] || []
       )
     else
       conn

@@ -9,6 +9,7 @@ defmodule Bookpile.Books do
   alias Bookpile.Books.Book
   alias Bookpile.Books.GoogleBookApi
   alias Bookpile.Books.Goodreads
+  alias Bookpile.Books.Inventaire
   alias Bookpile.Books.Search
 
   @doc """
@@ -131,7 +132,41 @@ defmodule Bookpile.Books do
   Fetches a book from google and goodreads and merges both
   """
   def fetch_from_web(isbn, http_library) do
+    case fetch_and_merge(isbn, http_library) do
+      nil -> nil
+      book_data ->
+        {:ok, stored_book} = create_book(book_data)
+        stored_book
+    end
+  end
+
+  @doc """
+  Re-fetches a book from external sources and updates the database record.
+  If the book doesn't exist yet it is created. Returns the book (possibly unchanged
+  if all sources fail).
+  """
+  def refresh_book(isbn, http_library \\ HTTPoison) do
+    existing =
+      Repo.one(from b in Book, where: b.isbn10 == ^isbn or b.isbn13 == ^isbn)
+
+    case fetch_and_merge(isbn, http_library) do
+      nil ->
+        existing
+
+      book_data ->
+        if existing do
+          {:ok, updated} = update_book(existing, book_data)
+          updated
+        else
+          {:ok, created} = create_book(book_data)
+          created
+        end
+    end
+  end
+
+  defp fetch_and_merge(isbn, http_library) do
     google_book = fetch_book_from_google(isbn, http_library)
+    inventaire_book = fetch_book_from_inventaire(isbn, http_library)
 
     goodreads_book = fetch_book_from_goodreads(isbn, http_library)
 
@@ -142,23 +177,17 @@ defmodule Bookpile.Books do
         goodreads_book
       end
 
-    book =
+    base_book =
       cond do
-        google_book == nil ->
-          goodreads_book
-
-        goodreads_book == nil ->
-          google_book
-
-        true ->
-          join_books(google_book, goodreads_book)
+        google_book == nil -> goodreads_book
+        goodreads_book == nil -> google_book
+        true -> join_books(google_book, goodreads_book)
       end
 
-    if book do
-      {:ok, stored_book} = create_book(book)
-      stored_book
-    else
-      nil
+    cond do
+      base_book == nil -> nil
+      inventaire_book == nil -> base_book
+      true -> apply_inventaire(base_book, inventaire_book)
     end
   end
 
@@ -185,6 +214,14 @@ defmodule Bookpile.Books do
     }
   end
 
+  defp apply_inventaire(base_book, inv_book) do
+    base_book
+    |> Map.put(:title, inv_book[:title] || base_book[:title])
+    |> Map.put(:image, inv_book[:image] || base_book[:image])
+    |> Map.put(:isbn13, base_book[:isbn13] || inv_book[:isbn13])
+    |> Map.put(:isbn10, base_book[:isbn10] || inv_book[:isbn10])
+  end
+
   @doc """
   Fetches a book from google and returns it as a struct if found,
   nil otherwise.
@@ -196,6 +233,13 @@ defmodule Bookpile.Books do
 
       {:error, _} ->
         nil
+    end
+  end
+
+  def fetch_book_from_inventaire(isbn, http_library \\ HTTPoison) do
+    case Inventaire.find_by_isbn(isbn, http_library) do
+      {:ok, book} -> book
+      {:error, _} -> nil
     end
   end
 

@@ -226,6 +226,12 @@
     "libraries": [
       {"name": "WorldCat", "note": "Search the catalogues of 17,000+ libraries worldwide", "url": "https://search.worldcat.org/search?q={{ISBN}}"},
       {"name": "Open Library", "note": "Internet Archive's open digital lending library", "url": "https://openlibrary.org/isbn/{{ISBN}}"}
+    ],
+    "trackers": [
+      {"name": "The StoryGraph", "note": "Independent reading tracker with mood-based recommendations", "url": "https://app.thestorygraph.com/browse?search_term={{ISBN}}"},
+      {"name": "Goodreads", "note": "Largest book social network for ratings and reviews", "url": "https://www.goodreads.com/search?q={{ISBN}}"},
+      {"name": "LibraryThing", "note": "Catalog your collection and connect with readers since 2005", "url": "https://www.librarything.com/isbn/{{ISBN}}"},
+      {"name": "Literal", "note": "Design-forward reading tracker and social bookshelf", "url": "https://literal.club/search/?q={{ISBN}}"}
     ]
   }
 }

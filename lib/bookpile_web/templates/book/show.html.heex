@@ -49,7 +49,7 @@
         <%= if @book.media_type do %>
           <span class="chip">{@book.media_type}</span>
         <% end %>
-        <%= if @book.page_count do %>
+        <%= if @book.page_count && @book.page_count > 0 do %>
           <span class="chip">{@book.page_count} pp.</span>
         <% end %>
         <span class="chip">ISBN {@isbn}</span>
@@ -96,21 +96,40 @@
     <div class="list-col">
       <div class="list-header">
         <h2 class="section-heading">Bookshops</h2>
-        <span class="tiny-label">{length(@shops)} places</span>
+        <span class="tiny-label">{length(@local_shops) + length(@national_shops)} places</span>
       </div>
       <div id="shops-list">
-        <%= for {shop, i} <- Enum.with_index(@shops) do %>
-          <a href={listing_url(shop, @isbn)} target="_blank" rel="noopener noreferrer"
-              class="listing-row" aria-label={"Buy #{@book.title} on #{shop["name"]}"}>
-            <span class="listing-index">{String.pad_leading(to_string(i + 1), 2, "0")}</span>
-            <span class="listing-icon">{shop_glyph(shop)}</span>
-            <span class="listing-info">
-              <span class="listing-name">{shop["name"]}</span>
-              <span class="listing-note">{shop["note"]}</span>
-              <span class="listing-action-mobile">{listing_domain(shop)} ↗</span>
-            </span>
-            <span class="listing-action">{listing_domain(shop)} ↗</span>
-          </a>
+        <%= if @local_shops != [] do %>
+          <h3 class="list-subheading">Local</h3>
+          <%= for {shop, i} <- Enum.with_index(@local_shops) do %>
+            <a href={listing_url(shop, @isbn)} target="_blank" rel="noopener noreferrer"
+                class="listing-row" aria-label={"Buy #{@book.title} on #{shop["name"]}"}>
+              <span class="listing-index">{String.pad_leading(to_string(i + 1), 2, "0")}</span>
+              <span class="listing-icon">{shop_glyph(shop)}</span>
+              <span class="listing-info">
+                <span class="listing-name">{shop["name"]}</span>
+                <span class="listing-note">{shop["note"]}</span>
+                <span class="listing-action-mobile">{listing_domain(shop)} ↗</span>
+              </span>
+              <span class="listing-action">{listing_domain(shop)} ↗</span>
+            </a>
+          <% end %>
+        <% end %>
+        <%= if @national_shops != [] do %>
+          <h3 class={if @local_shops != [], do: "list-subheading list-subheading--gap", else: "list-subheading"}>National chains</h3>
+          <%= for {shop, i} <- Enum.with_index(@national_shops) do %>
+            <a href={listing_url(shop, @isbn)} target="_blank" rel="noopener noreferrer"
+                class="listing-row" aria-label={"Buy #{@book.title} on #{shop["name"]}"}>
+              <span class="listing-index">{String.pad_leading(to_string(i + 1), 2, "0")}</span>
+              <span class="listing-icon">{shop_glyph(shop)}</span>
+              <span class="listing-info">
+                <span class="listing-name">{shop["name"]}</span>
+                <span class="listing-note">{shop["note"]}</span>
+                <span class="listing-action-mobile">{listing_domain(shop)} ↗</span>
+              </span>
+              <span class="listing-action">{listing_domain(shop)} ↗</span>
+            </a>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -141,6 +160,28 @@
         <% end %>
       </div>
     </div>
+    <%= if @trackers != [] do %>
+      <div class="list-col list-col--full">
+        <div class="list-header">
+          <h2 class="section-heading">Book tracking</h2>
+        </div>
+        <div id="trackers-list">
+          <%= for {tracker, i} <- Enum.with_index(@trackers) do %>
+            <a href={listing_url(tracker, @isbn)} target="_blank" rel="noopener noreferrer"
+                class="listing-row" aria-label={"Track #{@book.title} on #{tracker["name"]}"}>
+              <span class="listing-index">{String.pad_leading(to_string(i + 1), 2, "0")}</span>
+              <span class="listing-icon">{shop_glyph(tracker)}</span>
+              <span class="listing-info">
+                <span class="listing-name">{tracker["name"]}</span>
+                <span class="listing-note">{tracker["note"]}</span>
+                <span class="listing-action-mobile">{listing_domain(tracker)} ↗</span>
+              </span>
+              <span class="listing-action">{listing_domain(tracker)} ↗</span>
+            </a>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
 </div>

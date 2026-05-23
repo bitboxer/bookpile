@@ -526,14 +526,15 @@ h1, h2, h3 { font-weight: 400; }
 /* ─── Lists area ────────────────────────────────────── */
 .lists-area {
   padding: 32px 48px 56px;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 56px;
   transition: opacity 0.25s;
 }
 .lists-area.reloading { opacity: 0.4; }
 
-.list-col { }
+.list-col { flex: 1 1 460px; min-width: 0; }
+.list-col--full { flex: 1 1 100%; }
 .list-header {
   display: flex;
   justify-content: space-between;
@@ -547,6 +548,20 @@ h1, h2, h3 { font-weight: 400; }
   font-weight: 400;
   color: var(--ink);
 }
+
+#shops-list { margin-top: 2rem; }
+
+.list-subheading {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+}
+.list-subheading--gap { margin-top: 28px; }
 
 /* ─── Listing row ───────────────────────────────────── */
 .listing-row {
@@ -674,7 +689,6 @@ h1, h2, h3 { font-weight: 400; }
 
   .lists-area {
     padding: 24px 20px 40px;
-    grid-template-columns: 1fr;
     gap: 32px;
   }
 

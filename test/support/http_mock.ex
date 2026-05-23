@@ -79,6 +79,24 @@ defmodule Bookpile.HttpMock do
   end
 
   def get(
+        "https://inventaire.io/api/entities/by-uris?uris=isbn:9780593820254",
+        [{"User-Agent", "bookpile.org"}, {"Accept", "application/json"}],
+        follow_redirect: true
+      ) do
+    {:ok, body} = File.read("./test/support/data/inventaire_found.json")
+    {:ok, %{status_code: 200, body: body, headers: []}}
+  end
+
+  def get(
+        "https://inventaire.io/api/entities/by-uris?uris=isbn:1529355273",
+        [{"User-Agent", "bookpile.org"}, {"Accept", "application/json"}],
+        follow_redirect: true
+      ) do
+    {:ok, body} = File.read("./test/support/data/inventaire_not_found.json")
+    {:ok, %{status_code: 200, body: body, headers: []}}
+  end
+
+  def get(
         "https://www.goodreads.com/search?q=3847900781",
         [
           Accept: "text/html"

@@ -6,6 +6,7 @@ defmodule Bookpile.BookSources do
 
   everywhere_shops = get_in(raw, ["everywhere", "shops"]) || []
   everywhere_libraries = get_in(raw, ["everywhere", "libraries"]) || []
+  everywhere_trackers = get_in(raw, ["everywhere", "trackers"]) || []
 
   # Build merged regions: each city contains city-specific + country-wide + everywhere listings.
   regions =
@@ -18,9 +19,10 @@ defmodule Bookpile.BookSources do
       cities =
         (country_data["cities"] || %{})
         |> Enum.map(fn {city, city_data} ->
-          merged_shops = (city_data["shops"] || []) ++ country_shops ++ everywhere_shops
+          local_shops = city_data["shops"] || []
+          national_shops = country_shops ++ everywhere_shops
           merged_libraries = (city_data["libraries"] || []) ++ country_libraries ++ everywhere_libraries
-          {city, %{"shops" => merged_shops, "libraries" => merged_libraries}}
+          {city, %{"local_shops" => local_shops, "national_shops" => national_shops, "libraries" => merged_libraries, "trackers" => everywhere_trackers}}
         end)
         |> Map.new()
 
@@ -31,11 +33,34 @@ defmodule Bookpile.BookSources do
   @regions regions
   @regions_json Jason.encode!(regions)
 
+  countries_count = map_size(raw["regions"] || %{})
+
+  cities_count =
+    (raw["regions"] || %{})
+    |> Map.values()
+    |> Enum.reduce(0, fn c, acc -> acc + map_size(c["cities"] || %{}) end)
+
+  shops_count =
+    (raw["regions"] || %{})
+    |> Map.values()
+    |> Enum.reduce(0, fn c, acc ->
+      local =
+        (c["cities"] || %{})
+        |> Map.values()
+        |> Enum.reduce(0, fn city, a -> a + length(city["shops"] || []) end)
+
+      acc + local + length(c["shops"] || [])
+    end)
+    |> Kernel.+(length(everywhere_shops))
+
+  @stats %{countries: countries_count, cities: cities_count, shops: shops_count}
+
   def regions_json, do: @regions_json
+  def stats, do: @stats
 
   def listings_for(country, city) do
     get_in(@regions, [country, "cities", city]) ||
-      %{"shops" => [], "libraries" => []}
+      %{"local_shops" => [], "national_shops" => [], "libraries" => [], "trackers" => []}
   end
 
   # Returns the best {country, city} pair we actually have data for.
