@@ -6,6 +6,7 @@ defmodule Bookpile.MixProject do
       app: :bookpile,
       version: "0.1.0",
       elixir: "~> 1.14",
+      licenses: ["GPL-3.0-or-later"],
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
