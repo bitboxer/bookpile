@@ -145,13 +145,8 @@ function setupShareButton() {
       }, 1500);
     };
 
-    const copyFallback = () => {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(url).then(() => done()).catch(() => fallbackCopy(url, done));
-      } else {
-        fallbackCopy(url, done);
-      }
-    };
+    const copyFallback = () =>
+      navigator.clipboard?.writeText(url).then(() => done()).catch(() => {});
 
     if (navigator.share) {
       navigator
@@ -164,18 +159,6 @@ function setupShareButton() {
   });
 }
 
-function fallbackCopy(text, cb) {
-  const ta = document.createElement("textarea");
-  ta.value = text;
-  ta.style.cssText = "position:fixed;top:-9999px;left:-9999px";
-  document.body.appendChild(ta);
-  ta.select();
-  try {
-    document.execCommand("copy");
-    cb();
-  } catch (e) {}
-  document.body.removeChild(ta);
-}
 
 // ─── Cover fallback ──────────────────────────────────────────────────────────
 
