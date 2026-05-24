@@ -145,18 +145,21 @@ function setupShareButton() {
       }, 1500);
     };
 
+    const copyFallback = () => {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => done()).catch(() => fallbackCopy(url, done));
+      } else {
+        fallbackCopy(url, done);
+      }
+    };
+
     if (navigator.share) {
       navigator
-        .share({ url })
+        .share({ title: document.title, url })
         .then(() => done("✓ Shared"))
-        .catch(() => {});
-    } else if (navigator.clipboard) {
-      navigator.clipboard
-        .writeText(url)
-        .then(() => done())
-        .catch(() => fallbackCopy(url, done));
+        .catch((err) => { if (err.name !== "AbortError") copyFallback(); });
     } else {
-      fallbackCopy(url, done);
+      copyFallback();
     }
   });
 }
